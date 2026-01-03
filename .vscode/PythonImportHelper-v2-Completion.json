@@ -1,0 +1,1196 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "environ",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "environ",
+        "description": "environ",
+        "detail": "environ",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "monthrange",
+        "importPath": "calendar",
+        "description": "calendar",
+        "isExtraImport": true,
+        "detail": "calendar",
+        "documentation": {}
+    },
+    {
+        "label": "Sum",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "hmac",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hmac",
+        "description": "hmac",
+        "detail": "hmac",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "twilio.rest",
+        "description": "twilio.rest",
+        "isExtraImport": true,
+        "detail": "twilio.rest",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseNotAllowed",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseNotFound",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "core.asgi",
+        "description": "core.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nenv = environ.Env(\n    DJANGO_DEBUG=(bool, True),\n    DJANGO_ALLOWED_HOSTS=(list, []),\n    CSRF_TRUSTED_ORIGINS=(list, []),\n    TWILIO_VALIDATE_SIGNATURE=(bool, False),\n)\n_env_file = BASE_DIR / \".env\"\nif _env_file.exists():\n    environ.Env.read_env(_env_file)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "env",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "env = environ.Env(\n    DJANGO_DEBUG=(bool, True),\n    DJANGO_ALLOWED_HOSTS=(list, []),\n    CSRF_TRUSTED_ORIGINS=(list, []),\n    TWILIO_VALIDATE_SIGNATURE=(bool, False),\n)\n_env_file = BASE_DIR / \".env\"\nif _env_file.exists():\n    environ.Env.read_env(_env_file)\n# Quick-start development settings - unsuitable for production",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "_env_file",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "_env_file = BASE_DIR / \".env\"\nif _env_file.exists():\n    environ.Env.read_env(_env_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env(\"DJANGO_SECRET_KEY\", default='django-insecure-iu-pr=2qc7%b+i*mu)o5k@rq1_0u%npjsfpy$e!zvofthfgac#')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env(\"DJANGO_DEBUG\", default=True)\nALLOWED_HOSTS = env.list(\"DJANGO_ALLOWED_HOSTS\", default=[\"3e990a30f254.ngrok-free.app\"])",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "SECRET_KEY = env(\"DJANGO_SECRET_KEY\", default='django-insecure-iu-pr=2qc7%b+i*mu)o5k@rq1_0u%npjsfpy$e!zvofthfgac#')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env(\"DJANGO_DEBUG\", default=True)\nALLOWED_HOSTS = env.list(\"DJANGO_ALLOWED_HOSTS\", default=[\"3e990a30f254.ngrok-free.app\"])\n_csrf_origins = env.list(\"CSRF_TRUSTED_ORIGINS\", default=[])\nif _csrf_origins:\n    CSRF_TRUSTED_ORIGINS = _csrf_origins\nelse:\n    CSRF_TRUSTED_ORIGINS = [f\"https://{host}\" for host in ALLOWED_HOSTS if host not in (\"\", \"*\")]\n# Application definition",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "DEBUG = env(\"DJANGO_DEBUG\", default=True)\nALLOWED_HOSTS = env.list(\"DJANGO_ALLOWED_HOSTS\", default=[\"3e990a30f254.ngrok-free.app\"])\n_csrf_origins = env.list(\"CSRF_TRUSTED_ORIGINS\", default=[])\nif _csrf_origins:\n    CSRF_TRUSTED_ORIGINS = _csrf_origins\nelse:\n    CSRF_TRUSTED_ORIGINS = [f\"https://{host}\" for host in ALLOWED_HOSTS if host not in (\"\", \"*\")]\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "ALLOWED_HOSTS = env.list(\"DJANGO_ALLOWED_HOSTS\", default=[\"3e990a30f254.ngrok-free.app\"])\n_csrf_origins = env.list(\"CSRF_TRUSTED_ORIGINS\", default=[])\nif _csrf_origins:\n    CSRF_TRUSTED_ORIGINS = _csrf_origins\nelse:\n    CSRF_TRUSTED_ORIGINS = [f\"https://{host}\" for host in ALLOWED_HOSTS if host not in (\"\", \"*\")]\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "_csrf_origins",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "_csrf_origins = env.list(\"CSRF_TRUSTED_ORIGINS\", default=[])\nif _csrf_origins:\n    CSRF_TRUSTED_ORIGINS = _csrf_origins\nelse:\n    CSRF_TRUSTED_ORIGINS = [f\"https://{host}\" for host in ALLOWED_HOSTS if host not in (\"\", \"*\")]\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'users',\n    'tracker',\n]",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\nROOT_URLCONF = 'core.urls'",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "ROOT_URLCONF = 'core.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',\n                'django.contrib.messages.context_processors.messages',",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'core.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/6.0/ref/settings/#databases\n_db_url = env(\"DATABASE_URL\", default=\"\")\nif _db_url:\n    parsed = urlparse(_db_url)\n    DATABASES = {\n        \"default\": {\n            \"ENGINE\": \"django.db.backends.postgresql\",\n            \"NAME\": (parsed.path or \"\").lstrip(\"/\"),",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "_db_url",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "_db_url = env(\"DATABASE_URL\", default=\"\")\nif _db_url:\n    parsed = urlparse(_db_url)\n    DATABASES = {\n        \"default\": {\n            \"ENGINE\": \"django.db.backends.postgresql\",\n            \"NAME\": (parsed.path or \"\").lstrip(\"/\"),\n            \"USER\": parsed.username or \"\",\n            \"PASSWORD\": parsed.password or \"\",\n            \"HOST\": parsed.hostname or \"localhost\",",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.0/howto/static-files/\nSTATIC_URL = 'static/'\nTWILIO_ACCOUNT_SID = env(\"TWILIO_ACCOUNT_SID\", default=\"\")\nTWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.0/howto/static-files/\nSTATIC_URL = 'static/'\nTWILIO_ACCOUNT_SID = env(\"TWILIO_ACCOUNT_SID\", default=\"\")\nTWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.0/howto/static-files/\nSTATIC_URL = 'static/'\nTWILIO_ACCOUNT_SID = env(\"TWILIO_ACCOUNT_SID\", default=\"\")\nTWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.0/howto/static-files/\nSTATIC_URL = 'static/'\nTWILIO_ACCOUNT_SID = env(\"TWILIO_ACCOUNT_SID\", default=\"\")\nTWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\nTWILIO_ACCOUNT_SID = env(\"TWILIO_ACCOUNT_SID\", default=\"\")\nTWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TWILIO_ACCOUNT_SID",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "TWILIO_ACCOUNT_SID = env(\"TWILIO_ACCOUNT_SID\", default=\"\")\nTWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TWILIO_AUTH_TOKEN",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "TWILIO_AUTH_TOKEN = env(\"TWILIO_AUTH_TOKEN\", default=\"\")\nTWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TWILIO_WHATSAPP_FROM",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "TWILIO_WHATSAPP_FROM = env(\"TWILIO_WHATSAPP_FROM\", default=\"whatsapp:+14155238886\")\nTWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TWILIO_VALIDATE_SIGNATURE",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "TWILIO_VALIDATE_SIGNATURE = env.bool(\"TWILIO_VALIDATE_SIGNATURE\", default=False)",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "core.urls",
+        "description": "core.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", include(\"tracker.urls\")),\n]",
+        "detail": "core.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "core.wsgi",
+        "description": "core.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "tracker.migrations.0001_initial",
+        "description": "tracker.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = []\n    operations = [\n        migrations.CreateModel(\n            name=\"WhatsAppUser\",\n            fields=[\n                (\"id\", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name=\"ID\")),\n                (\"phone_number\", models.CharField(max_length=32, unique=True)),\n                (\"locale\", models.CharField(default=\"en\", max_length=16)),",
+        "detail": "tracker.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "tracker.migrations.0002_rename_tracker_expense_user_id_date_idx_tracker_exp_user_id_bcd9ed_idx_and_more",
+        "description": "tracker.migrations.0002_rename_tracker_expense_user_id_date_idx_tracker_exp_user_id_bcd9ed_idx_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('tracker', '0001_initial'),\n    ]\n    operations = [\n        migrations.RenameIndex(\n            model_name='expense',\n            new_name='tracker_exp_user_id_bcd9ed_idx',\n            old_name='tracker_expense_user_id_date_idx',\n        ),",
+        "detail": "tracker.migrations.0002_rename_tracker_expense_user_id_date_idx_tracker_exp_user_id_bcd9ed_idx_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "get_or_create_account",
+        "kind": 2,
+        "importPath": "tracker.services.accounts",
+        "description": "tracker.services.accounts",
+        "peekOfCode": "def get_or_create_account(user, name: str, account_type: str) -> Account:\n    account, _created = Account.objects.get_or_create(\n        user=user,\n        name=name.strip(),\n        type=account_type,\n        defaults={\"balance\": Decimal(\"0.00\")},\n    )\n    return account\ndef adjust_balance(account: Account, amount: Decimal):\n    account.balance -= amount",
+        "detail": "tracker.services.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "adjust_balance",
+        "kind": 2,
+        "importPath": "tracker.services.accounts",
+        "description": "tracker.services.accounts",
+        "peekOfCode": "def adjust_balance(account: Account, amount: Decimal):\n    account.balance -= amount\n    account.save(update_fields=[\"balance\"])\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return f\"Balance for {account.name} {account.type}: {account.balance:.2f} inr\"",
+        "detail": "tracker.services.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "get_balance_summary",
+        "kind": 2,
+        "importPath": "tracker.services.accounts",
+        "description": "tracker.services.accounts",
+        "peekOfCode": "def get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return f\"Balance for {account.name} {account.type}: {account.balance:.2f} inr\"\ndef list_accounts(user) -> str:\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:",
+        "detail": "tracker.services.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "list_accounts",
+        "kind": 2,
+        "importPath": "tracker.services.accounts",
+        "description": "tracker.services.accounts",
+        "peekOfCode": "def list_accounts(user) -> str:\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:\n        return \"No accounts found.\"\n    lines = [f\"- {account.name} ({account.type}): {account.balance:.2f} inr\" for account in accounts]\n    return \"Accounts:\\n\" + \"\\n\".join(lines)",
+        "detail": "tracker.services.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "get_or_create_card",
+        "kind": 2,
+        "importPath": "tracker.services.cards",
+        "description": "tracker.services.cards",
+        "peekOfCode": "def get_or_create_card(user, issuer: str) -> Card:\n    card, _created = Card.objects.get_or_create(\n        user=user,\n        issuer=issuer.strip(),\n        defaults={\"credit_limit\": Decimal(\"0.00\")},\n    )\n    return card\ndef _statement_window(billing_cycle_day: int, today: date | None = None):\n    if today is None:\n        today = timezone.localdate()",
+        "detail": "tracker.services.cards",
+        "documentation": {}
+    },
+    {
+        "label": "get_outstanding",
+        "kind": 2,
+        "importPath": "tracker.services.cards",
+        "description": "tracker.services.cards",
+        "peekOfCode": "def get_outstanding(card: Card) -> Decimal:\n    start, end = _statement_window(card.billing_cycle_day)\n    total = (\n        Expense.objects.filter(\n            source_card=card,\n            date__gte=start,\n            date__lte=end,\n        )\n        .aggregate(total=models.Sum(\"amount\"))\n        .get(\"total\")",
+        "detail": "tracker.services.cards",
+        "documentation": {}
+    },
+    {
+        "label": "get_credit_summary",
+        "kind": 2,
+        "importPath": "tracker.services.cards",
+        "description": "tracker.services.cards",
+        "peekOfCode": "def get_credit_summary(user, issuer: str, metric: str) -> str:\n    card = Card.objects.filter(user=user, issuer__iexact=issuer.strip()).first()\n    if not card:\n        return f\"No card named {issuer} found.\"\n    outstanding = get_outstanding(card)\n    available = card.credit_limit - outstanding\n    if metric == \"available credit\":\n        return f\"Available credit for {card.issuer}: {available:.2f} inr\"\n    if metric == \"due\":\n        return f\"Due amount for {card.issuer}: {outstanding:.2f} inr\"",
+        "detail": "tracker.services.cards",
+        "documentation": {}
+    },
+    {
+        "label": "list_cards",
+        "kind": 2,
+        "importPath": "tracker.services.cards",
+        "description": "tracker.services.cards",
+        "peekOfCode": "def list_cards(user) -> str:\n    cards = Card.objects.filter(user=user).order_by(\"issuer\", \"last4\")\n    if not cards:\n        return \"No cards found.\"\n    lines = []\n    for card in cards:\n        suffix = f\" {card.last4}\" if card.last4 else \"\"\n        lines.append(f\"- {card.issuer}{suffix}\")\n    return \"Cards:\\n\" + \"\\n\".join(lines)",
+        "detail": "tracker.services.cards",
+        "documentation": {}
+    },
+    {
+        "label": "IntentRoutingError",
+        "kind": 6,
+        "importPath": "tracker.services.errors",
+        "description": "tracker.services.errors",
+        "peekOfCode": "class IntentRoutingError(Exception):\n    pass\nclass ValidationError(Exception):\n    pass",
+        "detail": "tracker.services.errors",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "kind": 6,
+        "importPath": "tracker.services.errors",
+        "description": "tracker.services.errors",
+        "peekOfCode": "class ValidationError(Exception):\n    pass",
+        "detail": "tracker.services.errors",
+        "documentation": {}
+    },
+    {
+        "label": "create_expense",
+        "kind": 2,
+        "importPath": "tracker.services.expenses",
+        "description": "tracker.services.expenses",
+        "peekOfCode": "def create_expense(user, data: dict) -> Expense:\n    category = _get_or_create_category(user, data.get(\"category\"))\n    source_type = data.get(\"source_type\")\n    source_account = None\n    source_card = None\n    if source_type in {\"account\", \"cash\"}:\n        source_account = get_or_create_account(user, data[\"source\"], source_type)\n    elif source_type == \"card\":\n        source_card = get_or_create_card(user, data[\"source\"])\n    expense = Expense.objects.create(",
+        "detail": "tracker.services.expenses",
+        "documentation": {}
+    },
+    {
+        "label": "update_expense",
+        "kind": 2,
+        "importPath": "tracker.services.expenses",
+        "description": "tracker.services.expenses",
+        "peekOfCode": "def update_expense(user, data: dict) -> Expense | None:\n    expense = Expense.objects.filter(user=user, id=data[\"expense_id\"]).first()\n    if not expense:\n        return None\n    if data.get(\"amount\") is not None:\n        expense.amount = data[\"amount\"]\n    if data.get(\"currency\"):\n        expense.currency = data[\"currency\"]\n    if data.get(\"date\"):\n        expense.date = data[\"date\"]",
+        "detail": "tracker.services.expenses",
+        "documentation": {}
+    },
+    {
+        "label": "delete_expense",
+        "kind": 2,
+        "importPath": "tracker.services.expenses",
+        "description": "tracker.services.expenses",
+        "peekOfCode": "def delete_expense(user, expense_id: int) -> bool:\n    expense = Expense.objects.filter(user=user, id=expense_id).first()\n    if not expense:\n        return False\n    if expense.source_account:\n        expense.source_account.balance += expense.amount\n        expense.source_account.save(update_fields=[\"balance\"])\n    expense.delete()\n    return True\ndef list_expenses(user, limit: int = 10) -> str:",
+        "detail": "tracker.services.expenses",
+        "documentation": {}
+    },
+    {
+        "label": "list_expenses",
+        "kind": 2,
+        "importPath": "tracker.services.expenses",
+        "description": "tracker.services.expenses",
+        "peekOfCode": "def list_expenses(user, limit: int = 10) -> str:\n    expenses = Expense.objects.filter(user=user).order_by(\"-date\", \"-id\")[:limit]\n    if not expenses:\n        return \"No transactions found.\"\n    lines = []\n    for expense in expenses:\n        category = expense.category.name if expense.category else \"uncategorized\"\n        source = \"unknown\"\n        if expense.source_type in {\"account\", \"cash\"} and expense.source_account:\n            source = f\"{expense.source_account.name} {expense.source_type}\"",
+        "detail": "tracker.services.expenses",
+        "documentation": {}
+    },
+    {
+        "label": "handle_intent",
+        "kind": 2,
+        "importPath": "tracker.services.handlers",
+        "description": "tracker.services.handlers",
+        "peekOfCode": "def handle_intent(user, intent: str, data: dict) -> str:\n    if intent == \"EXPENSE_CREATE\":\n        expense = create_expense(user, data)\n        return expense_created(expense)\n    if intent == \"EXPENSE_UPDATE\":\n        expense = update_expense(user, data)\n        if not expense:\n            return \"Expense not found.\"\n        return expense_updated(expense)\n    if intent == \"EXPENSE_DELETE\":",
+        "detail": "tracker.services.handlers",
+        "documentation": {}
+    },
+    {
+        "label": "get_help_text",
+        "kind": 2,
+        "importPath": "tracker.services.help",
+        "description": "tracker.services.help",
+        "peekOfCode": "def get_help_text() -> str:\n    return \"\\n\".join(\n        [\n            \"Supported formats:\",\n            \"- spent 1200 on groceries from hdfc card\",\n            \"- spent 450 on electricity from sbi account\",\n            \"- spent 300 on snacks from wallet cash\",\n            \"- update expense 23 amount 2500 category rent source hdfc card on 2024-09-01\",\n            \"- delete expense 23\",\n            \"- balance of sbi account\",",
+        "detail": "tracker.services.help",
+        "documentation": {}
+    },
+    {
+        "label": "route_intent",
+        "kind": 2,
+        "importPath": "tracker.services.intent_router",
+        "description": "tracker.services.intent_router",
+        "peekOfCode": "def route_intent(text: str):\n    matches = parse_message(text)\n    if not matches:\n        raise IntentRoutingError(\"Unsupported message format.\")\n    if len(matches) > 1:\n        raise IntentRoutingError(\"Ambiguous input. Please clarify your request.\")\n    match = matches[0]\n    if match.intent == \"EXPENSE_CREATE\" and not match.data.get(\"source_type\"):\n        match.data[\"source_type\"] = \"card\"\n    return match.intent, match.data",
+        "detail": "tracker.services.intent_router",
+        "documentation": {}
+    },
+    {
+        "label": "expense_created",
+        "kind": 2,
+        "importPath": "tracker.services.notifications",
+        "description": "tracker.services.notifications",
+        "peekOfCode": "def expense_created(expense: Expense) -> str:\n    category = expense.category.name if expense.category else \"uncategorized\"\n    return (\n        f\"Added expense {expense.amount:.2f} {expense.currency} for {category} \"\n        f\"on {expense.date}.\"\n    )\ndef expense_updated(expense: Expense) -> str:\n    return f\"Updated expense {expense.id}.\"\ndef expense_deleted(expense_id: int) -> str:\n    return f\"Deleted expense {expense_id}.\"",
+        "detail": "tracker.services.notifications",
+        "documentation": {}
+    },
+    {
+        "label": "expense_updated",
+        "kind": 2,
+        "importPath": "tracker.services.notifications",
+        "description": "tracker.services.notifications",
+        "peekOfCode": "def expense_updated(expense: Expense) -> str:\n    return f\"Updated expense {expense.id}.\"\ndef expense_deleted(expense_id: int) -> str:\n    return f\"Deleted expense {expense_id}.\"\ndef error(message: str) -> str:\n    return message",
+        "detail": "tracker.services.notifications",
+        "documentation": {}
+    },
+    {
+        "label": "expense_deleted",
+        "kind": 2,
+        "importPath": "tracker.services.notifications",
+        "description": "tracker.services.notifications",
+        "peekOfCode": "def expense_deleted(expense_id: int) -> str:\n    return f\"Deleted expense {expense_id}.\"\ndef error(message: str) -> str:\n    return message",
+        "detail": "tracker.services.notifications",
+        "documentation": {}
+    },
+    {
+        "label": "error",
+        "kind": 2,
+        "importPath": "tracker.services.notifications",
+        "description": "tracker.services.notifications",
+        "peekOfCode": "def error(message: str) -> str:\n    return message",
+        "detail": "tracker.services.notifications",
+        "documentation": {}
+    },
+    {
+        "label": "ParsedMatch",
+        "kind": 6,
+        "importPath": "tracker.services.regex_parser",
+        "description": "tracker.services.regex_parser",
+        "peekOfCode": "class ParsedMatch:\n    intent: str\n    data: dict[str, Any]\n    pattern_name: str\n_SPACE_RE = re.compile(r\"\\s+\")\n_CURRENCY_RE = re.compile(r\"(₹|rs\\.?)\", re.IGNORECASE)\ndef preprocess_message(text: str) -> str:\n    normalized = text.strip().lower()\n    normalized = _SPACE_RE.sub(\" \", normalized)\n    normalized = normalized.replace(\"paid\", \"spent\")",
+        "detail": "tracker.services.regex_parser",
+        "documentation": {}
+    },
+    {
+        "label": "preprocess_message",
+        "kind": 2,
+        "importPath": "tracker.services.regex_parser",
+        "description": "tracker.services.regex_parser",
+        "peekOfCode": "def preprocess_message(text: str) -> str:\n    normalized = text.strip().lower()\n    normalized = _SPACE_RE.sub(\" \", normalized)\n    normalized = normalized.replace(\"paid\", \"spent\")\n    normalized = normalized.replace(\"purchase\", \"spent\")\n    normalized = normalized.replace(\"bought\", \"spent\")\n    normalized = _CURRENCY_RE.sub(\"inr\", normalized)\n    return normalized\ndef _parse_amount(value: str | None) -> Decimal | None:\n    if not value:",
+        "detail": "tracker.services.regex_parser",
+        "documentation": {}
+    },
+    {
+        "label": "parse_message",
+        "kind": 2,
+        "importPath": "tracker.services.regex_parser",
+        "description": "tracker.services.regex_parser",
+        "peekOfCode": "def parse_message(text: str) -> list[ParsedMatch]:\n    normalized = preprocess_message(text)\n    matches: list[ParsedMatch] = []\n    for spec in PATTERNS:\n        match = spec[\"pattern\"].match(normalized)\n        if not match:\n            continue\n        data = match.groupdict()\n        if spec[\"name\"] == \"expense_create_card\":\n            data[\"source_type\"] = \"card\"",
+        "detail": "tracker.services.regex_parser",
+        "documentation": {}
+    },
+    {
+        "label": "_SPACE_RE",
+        "kind": 5,
+        "importPath": "tracker.services.regex_parser",
+        "description": "tracker.services.regex_parser",
+        "peekOfCode": "_SPACE_RE = re.compile(r\"\\s+\")\n_CURRENCY_RE = re.compile(r\"(₹|rs\\.?)\", re.IGNORECASE)\ndef preprocess_message(text: str) -> str:\n    normalized = text.strip().lower()\n    normalized = _SPACE_RE.sub(\" \", normalized)\n    normalized = normalized.replace(\"paid\", \"spent\")\n    normalized = normalized.replace(\"purchase\", \"spent\")\n    normalized = normalized.replace(\"bought\", \"spent\")\n    normalized = _CURRENCY_RE.sub(\"inr\", normalized)\n    return normalized",
+        "detail": "tracker.services.regex_parser",
+        "documentation": {}
+    },
+    {
+        "label": "_CURRENCY_RE",
+        "kind": 5,
+        "importPath": "tracker.services.regex_parser",
+        "description": "tracker.services.regex_parser",
+        "peekOfCode": "_CURRENCY_RE = re.compile(r\"(₹|rs\\.?)\", re.IGNORECASE)\ndef preprocess_message(text: str) -> str:\n    normalized = text.strip().lower()\n    normalized = _SPACE_RE.sub(\" \", normalized)\n    normalized = normalized.replace(\"paid\", \"spent\")\n    normalized = normalized.replace(\"purchase\", \"spent\")\n    normalized = normalized.replace(\"bought\", \"spent\")\n    normalized = _CURRENCY_RE.sub(\"inr\", normalized)\n    return normalized\ndef _parse_amount(value: str | None) -> Decimal | None:",
+        "detail": "tracker.services.regex_parser",
+        "documentation": {}
+    },
+    {
+        "label": "PATTERNS",
+        "kind": 5,
+        "importPath": "tracker.services.regex_parser",
+        "description": "tracker.services.regex_parser",
+        "peekOfCode": "PATTERNS = [\n    {\n        \"name\": \"expense_create_card\",\n        \"intent\": \"EXPENSE_CREATE\",\n        \"pattern\": re.compile(\n            r\"^spent (?P<amount>\\d+(?:\\.\\d{1,2})?) ?(?P<currency>inr)? on \"\n            r\"(?P<category>[a-z][a-z ]{1,30}[a-z]) from \"\n            r\"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card\"\n            r\"(?: on (?P<date>\\d{4}-\\d{2}-\\d{2}|\\d{2}/\\d{2}/\\d{4}))?$\"\n        ),",
+        "detail": "tracker.services.regex_parser",
+        "documentation": {}
+    },
+    {
+        "label": "summarize_month",
+        "kind": 2,
+        "importPath": "tracker.services.reporting",
+        "description": "tracker.services.reporting",
+        "peekOfCode": "def summarize_month(user, month_name: str, year: int | None) -> str:\n    month = MONTH_MAP.get(month_name)\n    if not month:\n        return \"Invalid month.\"\n    if not year:\n        year = timezone.localdate().year\n    start, end = _month_window(month, year)\n    total = (\n        Expense.objects.filter(user=user, date__gte=start, date__lte=end)\n        .aggregate(total=Sum(\"amount\"))",
+        "detail": "tracker.services.reporting",
+        "documentation": {}
+    },
+    {
+        "label": "summarize_relative",
+        "kind": 2,
+        "importPath": "tracker.services.reporting",
+        "description": "tracker.services.reporting",
+        "peekOfCode": "def summarize_relative(user, relative_period: str) -> str:\n    today = timezone.localdate()\n    if relative_period == \"this month\":\n        start, end = _month_window(today.month, today.year)\n    else:\n        prev_month = today.replace(day=1) - timedelta(days=1)\n        start, end = _month_window(prev_month.month, prev_month.year)\n    total = (\n        Expense.objects.filter(user=user, date__gte=start, date__lte=end)\n        .aggregate(total=Sum(\"amount\"))",
+        "detail": "tracker.services.reporting",
+        "documentation": {}
+    },
+    {
+        "label": "MONTH_MAP",
+        "kind": 5,
+        "importPath": "tracker.services.reporting",
+        "description": "tracker.services.reporting",
+        "peekOfCode": "MONTH_MAP = {\n    \"jan\": 1,\n    \"january\": 1,\n    \"feb\": 2,\n    \"february\": 2,\n    \"mar\": 3,\n    \"march\": 3,\n    \"apr\": 4,\n    \"april\": 4,\n    \"may\": 5,",
+        "detail": "tracker.services.reporting",
+        "documentation": {}
+    },
+    {
+        "label": "is_twilio_configured",
+        "kind": 2,
+        "importPath": "tracker.services.twilio",
+        "description": "tracker.services.twilio",
+        "peekOfCode": "def is_twilio_configured() -> bool:\n    return bool(settings.TWILIO_ACCOUNT_SID and settings.TWILIO_AUTH_TOKEN and settings.TWILIO_WHATSAPP_FROM)\ndef validate_twilio_request(request) -> bool:\n    auth_token = settings.TWILIO_AUTH_TOKEN\n    signature = request.headers.get(\"X-Twilio-Signature\", \"\")\n    if not auth_token or not signature:\n        return False\n    url = request.build_absolute_uri()\n    params = request.POST\n    if params:",
+        "detail": "tracker.services.twilio",
+        "documentation": {}
+    },
+    {
+        "label": "validate_twilio_request",
+        "kind": 2,
+        "importPath": "tracker.services.twilio",
+        "description": "tracker.services.twilio",
+        "peekOfCode": "def validate_twilio_request(request) -> bool:\n    auth_token = settings.TWILIO_AUTH_TOKEN\n    signature = request.headers.get(\"X-Twilio-Signature\", \"\")\n    if not auth_token or not signature:\n        return False\n    url = request.build_absolute_uri()\n    params = request.POST\n    if params:\n        parts = [url]\n        for key in sorted(params.keys()):",
+        "detail": "tracker.services.twilio",
+        "documentation": {}
+    },
+    {
+        "label": "send_whatsapp_message",
+        "kind": 2,
+        "importPath": "tracker.services.twilio",
+        "description": "tracker.services.twilio",
+        "peekOfCode": "def send_whatsapp_message(to_number: str, body: str) -> None:\n    print(to_number, body)\n    client = Client(\n        settings.TWILIO_ACCOUNT_SID,\n        settings.TWILIO_AUTH_TOKEN,\n    )\n    message =  client.messages.create(\n        from_=settings.TWILIO_WHATSAPP_FROM,   # \"whatsapp:+14155238886\"\n        to=to_number,                          # \"whatsapp:+94710170677\"\n        body=body,",
+        "detail": "tracker.services.twilio",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tracker.services.twilio",
+        "description": "tracker.services.twilio",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef is_twilio_configured() -> bool:\n    return bool(settings.TWILIO_ACCOUNT_SID and settings.TWILIO_AUTH_TOKEN and settings.TWILIO_WHATSAPP_FROM)\ndef validate_twilio_request(request) -> bool:\n    auth_token = settings.TWILIO_AUTH_TOKEN\n    signature = request.headers.get(\"X-Twilio-Signature\", \"\")\n    if not auth_token or not signature:\n        return False\n    url = request.build_absolute_uri()\n    params = request.POST",
+        "detail": "tracker.services.twilio",
+        "documentation": {}
+    },
+    {
+        "label": "validate_payload",
+        "kind": 2,
+        "importPath": "tracker.services.validation",
+        "description": "tracker.services.validation",
+        "peekOfCode": "def validate_payload(intent: str, data: dict, user):\n    amount = data.get(\"amount\")\n    if intent in {\"EXPENSE_CREATE\", \"EXPENSE_UPDATE\"}:\n        if amount is None:\n            raise ValidationError(\"Missing amount.\")\n        if amount <= 0:\n            raise ValidationError(\"Amount must be greater than zero.\")\n    if intent == \"EXPENSE_CREATE\":\n        category = data.get(\"category\")\n        source = data.get(\"source\")",
+        "detail": "tracker.services.validation",
+        "documentation": {}
+    },
+    {
+        "label": "get_or_create_user",
+        "kind": 2,
+        "importPath": "tracker.services.webhook",
+        "description": "tracker.services.webhook",
+        "peekOfCode": "def get_or_create_user(phone_number: str) -> WhatsAppUser:\n    user, _created = WhatsAppUser.objects.get_or_create(phone_number=phone_number)\n    return user\ndef ensure_message(user: WhatsAppUser, raw_text: str, idempotency_key: str) -> Message:\n    if Message.objects.filter(idempotency_key=idempotency_key).exists():\n        raise ValidationError(\"Duplicate message ignored.\")\n    return Message.objects.create(\n        user=user,\n        raw_text=raw_text,\n        idempotency_key=idempotency_key,",
+        "detail": "tracker.services.webhook",
+        "documentation": {}
+    },
+    {
+        "label": "ensure_message",
+        "kind": 2,
+        "importPath": "tracker.services.webhook",
+        "description": "tracker.services.webhook",
+        "peekOfCode": "def ensure_message(user: WhatsAppUser, raw_text: str, idempotency_key: str) -> Message:\n    if Message.objects.filter(idempotency_key=idempotency_key).exists():\n        raise ValidationError(\"Duplicate message ignored.\")\n    return Message.objects.create(\n        user=user,\n        raw_text=raw_text,\n        idempotency_key=idempotency_key,\n    )\ndef mark_message(message: Message, status: str, intent: str | None = None):\n    fields = [\"status\"]",
+        "detail": "tracker.services.webhook",
+        "documentation": {}
+    },
+    {
+        "label": "mark_message",
+        "kind": 2,
+        "importPath": "tracker.services.webhook",
+        "description": "tracker.services.webhook",
+        "peekOfCode": "def mark_message(message: Message, status: str, intent: str | None = None):\n    fields = [\"status\"]\n    message.status = status\n    if intent is not None:\n        message.parsed_intent = intent\n        fields.append(\"parsed_intent\")\n    message.save(update_fields=fields)",
+        "detail": "tracker.services.webhook",
+        "documentation": {}
+    },
+    {
+        "label": "TrackerConfig",
+        "kind": 6,
+        "importPath": "tracker.apps",
+        "description": "tracker.apps",
+        "peekOfCode": "class TrackerConfig(AppConfig):\n    name = 'tracker'",
+        "detail": "tracker.apps",
+        "documentation": {}
+    },
+    {
+        "label": "WhatsAppUser",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class WhatsAppUser(models.Model):\n    phone_number = models.CharField(max_length=32, unique=True)\n    locale = models.CharField(max_length=16, default=\"en\")\n    timezone = models.CharField(max_length=64, default=\"UTC\")\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return self.phone_number\nclass Account(models.Model):\n    TYPE_BANK = \"bank\"\n    TYPE_CASH = \"cash\"",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "Account",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class Account(models.Model):\n    TYPE_BANK = \"bank\"\n    TYPE_CASH = \"cash\"\n    TYPE_CHOICES = [\n        (TYPE_BANK, \"Bank\"),\n        (TYPE_CASH, \"Cash\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)\n    name = models.CharField(max_length=64)\n    type = models.CharField(max_length=16, choices=TYPE_CHOICES)",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "Card",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class Card(models.Model):\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)\n    issuer = models.CharField(max_length=64)\n    last4 = models.CharField(max_length=4, blank=True)\n    billing_cycle_day = models.PositiveSmallIntegerField(default=1)\n    credit_limit = models.DecimalField(max_digits=12, decimal_places=2, default=0)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        unique_together = (\"user\", \"issuer\", \"last4\")\n    def __str__(self) -> str:",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class Category(models.Model):\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)\n    name = models.CharField(max_length=64)\n    aliases = models.JSONField(default=list, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        unique_together = (\"user\", \"name\")\n    def __str__(self) -> str:\n        return self.name\nclass Expense(models.Model):",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "Expense",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class Expense(models.Model):\n    SOURCE_CARD = \"card\"\n    SOURCE_ACCOUNT = \"account\"\n    SOURCE_CASH = \"cash\"\n    SOURCE_CHOICES = [\n        (SOURCE_CARD, \"Card\"),\n        (SOURCE_ACCOUNT, \"Account\"),\n        (SOURCE_CASH, \"Cash\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "Message",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class Message(models.Model):\n    STATUS_RECEIVED = \"received\"\n    STATUS_PROCESSED = \"processed\"\n    STATUS_REJECTED = \"rejected\"\n    STATUS_CHOICES = [\n        (STATUS_RECEIVED, \"Received\"),\n        (STATUS_PROCESSED, \"Processed\"),\n        (STATUS_REJECTED, \"Rejected\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "tracker.urls",
+        "description": "tracker.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"webhook/whatsapp/\", whatsapp_webhook, name=\"whatsapp-webhook\"),\n    path(\"demo/\", demo_ui, name=\"demo-ui\"),\n]",
+        "detail": "tracker.urls",
+        "documentation": {}
+    },
+    {
+        "label": "whatsapp_webhook",
+        "kind": 2,
+        "importPath": "tracker.views",
+        "description": "tracker.views",
+        "peekOfCode": "def whatsapp_webhook(request):\n    if request.method != \"POST\":\n        logger.warning(\"Webhook called with invalid method: %s\", request.method)\n        return HttpResponseNotAllowed([\"POST\"])\n    payload = _get_payload(request)\n    logger.info(\"Incoming WhatsApp webhook: %s\", _summarize_payload(payload))\n    demo_mode = payload.get(\"demo\") in (\"1\", \"true\", \"yes\")\n    if settings.TWILIO_VALIDATE_SIGNATURE and not demo_mode and not validate_twilio_request(request):\n        logger.warning(\"Rejected webhook due to invalid Twilio signature: %s\", _summarize_payload(payload))\n        return JsonResponse({\"status\": \"error\", \"message\": \"Invalid Twilio signature.\"}, status=403)",
+        "detail": "tracker.views",
+        "documentation": {}
+    },
+    {
+        "label": "demo_ui",
+        "kind": 2,
+        "importPath": "tracker.views",
+        "description": "tracker.views",
+        "peekOfCode": "def demo_ui(request):\n    if not settings.DEBUG:\n        return HttpResponseNotFound()\n    return render(request, \"tracker/demo.html\")",
+        "detail": "tracker.views",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tracker.views",
+        "description": "tracker.views",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef _mask_sender(sender: str | None) -> str | None:\n    if not sender:\n        return None\n    if len(sender) <= 6:\n        return sender\n    return f\"{sender[:2]}***{sender[-2:]}\"\ndef _summarize_payload(raw_payload: dict) -> dict:\n    return {\n        \"message_id\": raw_payload.get(\"MessageSid\") or raw_payload.get(\"message_id\") or raw_payload.get(\"id\"),",
+        "detail": "tracker.views",
+        "documentation": {}
+    },
+    {
+        "label": "UsersConfig",
+        "kind": 6,
+        "importPath": "users.apps",
+        "description": "users.apps",
+        "peekOfCode": "class UsersConfig(AppConfig):\n    name = 'users'",
+        "detail": "users.apps",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]

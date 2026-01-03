@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WhatsApp Expense Bot Demo</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f2efe6;
+        --ink: #1c1b18;
+        --muted: #6b665e;
+        --card: #ffffff;
+        --accent: #0f6b4b;
+        --accent-ink: #ffffff;
+        --border: #ded8cc;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Courier Prime", "Courier New", monospace;
+        color: var(--ink);
+        background: radial-gradient(circle at top, #ffffff 0%, var(--bg) 70%);
+        min-height: 100vh;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 48px auto;
+        padding: 0 20px 40px;
+      }
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+      h1 {
+        font-size: 32px;
+        letter-spacing: 1px;
+        margin: 0;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: 16px;
+        margin: 0;
+      }
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(24, 20, 16, 0.08);
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-family: inherit;
+        background: #fffdfa;
+        color: var(--ink);
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      button {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 22px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        cursor: pointer;
+      }
+      button.secondary {
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+      }
+      .response {
+        background: #11130f;
+        color: #d7fbe1;
+        border-radius: 12px;
+        padding: 16px;
+        min-height: 120px;
+        font-size: 14px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 6px 14px;
+        background: #e6f0eb;
+        color: var(--accent);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      @media (max-width: 700px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <span class="pill">Debug Demo</span>
+        <h1>WhatsApp Expense Bot Console</h1>
+        <p class="subtitle">
+          Simulate Twilio webhook payloads and see the response without leaving your browser.
+        </p>
+      </header>
+
+      <div class="grid">
+        <div class="card">
+          <form id="demo-form">
+            <div class="row">
+              <div>
+                <label for="from">From (WhatsApp)</label>
+                <input id="from" name="from" type="text" value="whatsapp:+14155552671" />
+              </div>
+              <div>
+                <label for="message_sid">MessageSid</label>
+                <input id="message_sid" name="message_sid" type="text" value="SMXXXXDEBUG0001" />
+              </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <label for="body">Message Body</label>
+              <textarea id="body" name="body">spent 1200 on groceries</textarea>
+            </div>
+
+            <div class="actions">
+              <button type="submit">Send to Webhook</button>
+              <button class="secondary" type="button" id="sample-btn">Load Sample</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <label>Webhook Response</label>
+          <div class="response" id="response">Waiting for request...</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("demo-form");
+      const responseBox = document.getElementById("response");
+      const sampleBtn = document.getElementById("sample-btn");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        responseBox.textContent = "Sending...";
+
+        const payload = new URLSearchParams({
+          From: form.from.value,
+          Body: form.body.value,
+          MessageSid: form.message_sid.value,
+          demo: "1",
+        });
+
+        try {
+          const res = await fetch("/webhook/whatsapp/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: payload.toString(),
+          });
+          const text = await res.text();
+          responseBox.textContent = text;
+        } catch (err) {
+          responseBox.textContent = String(err);
+        }
+      });
+
+      sampleBtn.addEventListener("click", () => {
+        form.body.value = "paid 2300 to visa on 2024-05-10";
+        form.message_sid.value = "SMXXXXDEBUG0002";
+      });
+    </script>
+  </body>
+</html>
