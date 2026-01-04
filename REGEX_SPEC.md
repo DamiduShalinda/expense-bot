@@ -30,7 +30,7 @@ Before applying any regex:
 ## Shared Tokens (Reference)
 
 - Amount: `(?P<amount>\d+(?:\.\d{1,2})?)`
-- Currency (optional): `(?P<currency>inr)?`
+- Currency (optional): `(?P<currency>[a-z]{2,5})?`
 - Category: `(?P<category>[a-z][a-z ]{1,30}[a-z])`
 - Source (name): `(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9])`
 - Source type: `(?P<source_type>card|account|cash)`
@@ -64,6 +64,7 @@ Notes:
 - LOAN_PAYMENT
 - LOAN_LIST
 - HELP
+- CURRENCY_SET
 
 Each regex pattern must declare:
 - Intent
@@ -82,7 +83,7 @@ Each regex pattern must declare:
 Creates a new expense linked to a credit card.
 
 ### Pattern
-`^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on (?P<category>[a-z][a-z ]{1,30}[a-z]) from (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card(?: last4 (?P<card_last4>\d{4}))?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+`^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})? on (?P<category>[a-z][a-z ]{1,30}[a-z]) from (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card(?: last4 (?P<card_last4>\d{4}))?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
 
 ### Example
 spent 1200 on groceries from hdfc card last4 1234
@@ -107,7 +108,7 @@ spent 1200 on groceries from hdfc card last4 1234
 Creates a new expense linked to a bank account or cash.
 
 ### Pattern
-`^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on (?P<category>[a-z][a-z ]{1,30}[a-z]) from (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>account|cash)(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+`^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})? on (?P<category>[a-z][a-z ]{1,30}[a-z]) from (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>account|cash)(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
 
 ### Example
 spent 450 on electricity from sbi account
@@ -131,7 +132,7 @@ spent 450 on electricity from sbi account
 Updates a specific expense by its numeric id.
 
 ### Pattern
-`^update expense (?P<expense_id>\d+) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: category (?P<category>[a-z][a-z ]{1,30}[a-z]))?(?: source (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>card|account|cash)(?: last4 (?P<card_last4>\d{4}))?)?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+`^update expense (?P<expense_id>\d+) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?(?: category (?P<category>[a-z][a-z ]{1,30}[a-z]))?(?: source (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>card|account|cash)(?: last4 (?P<card_last4>\d{4}))?)?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
 
 ### Example
 update expense 23 amount 2500 category rent source hdfc card on 2024-09-01
@@ -334,7 +335,7 @@ list transactions
 Creates or updates an account (bank/cash) with a starting or updated balance.
 
 ### Pattern
-`^(add|create|update|set) account (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>account|cash) balance (?P<balance>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?$`
+`^(add|create|update|set) account (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>account|cash) balance (?P<balance>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?$`
 
 ### Example
 add account sbi account balance 12000
@@ -356,7 +357,7 @@ add account sbi account balance 12000
 Creates or updates a credit card with credit limit, billing cycle, and optional last 4 digits.
 
 ### Pattern
-`^(add|create|update|set) card (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9])(?: card)? limit (?P<credit_limit>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: cycle (?P<billing_cycle_day>\d{1,2}))?(?: last4 (?P<last4>\d{4}))?$`
+`^(add|create|update|set) card (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9])(?: card)? limit (?P<credit_limit>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?(?: cycle (?P<billing_cycle_day>\d{1,2}))?(?: last4 (?P<last4>\d{4}))?$`
 
 ### Example
 add card hdfc limit 50000 cycle 5 last4 1234
@@ -398,7 +399,7 @@ list categories
 Creates or updates a loan with principal amount and optional description.
 
 ### Pattern
-`^(add|create|set) loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: description (?P<description>[a-z0-9][a-z0-9 ,\.-]{1,120}[a-z0-9]))?$`
+`^(add|create|set) loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?(?: description (?P<description>[a-z0-9][a-z0-9 ,\.-]{1,120}[a-z0-9]))?$`
 
 ### Example
 add loan home amount 500000 description home renovation
@@ -420,7 +421,7 @@ add loan home amount 500000 description home renovation
 Records a loan payment, allowing partial or full payoff.
 
 ### Pattern
-`^pay loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+`^pay loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
 
 ### Example
 pay loan home amount 15000 on 2024-01-15
@@ -452,7 +453,26 @@ list loans
 
 ---
 
-## 19. Help
+## 19. Set Default Currency
+
+### Intent
+`CURRENCY_SET`
+
+### Description
+Updates the user's default currency code for all future transactions unless overridden per command.
+
+### Pattern
+`^(?:set|update)? ?(?:default )?currency(?: to)? (?P<currency>[a-z]{2,5})$`
+
+### Example
+set currency usd
+
+### Named Groups
+- currency
+
+---
+
+## 20. Help
 
 ### Intent
 `HELP`
@@ -461,13 +481,13 @@ list loans
 Lists all supported message formats with examples.
 
 ### Pattern
-`^(help|commands)$`
+`^(help|commands)(?: (?P<help_topic>[a-z]+(?: [a-z]+)*))?$`
 
 ### Example
-help
+help cards
 
 ### Named Groups
-- None
+- help_topic (optional)
 
 ---
 

@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from ..models import Account
+from .currency import get_user_currency
 
 
 def get_or_create_account(user, name: str, account_type: str) -> Account:
@@ -35,7 +36,8 @@ def adjust_balance(account: Account, delta: Decimal):
 
 
 def describe_account(account: Account) -> str:
-    return f"{account.name} ({account.type}) balance: {account.balance:.2f} inr"
+    currency = get_user_currency(account.user).upper()
+    return f"{account.name} ({account.type}) balance: {account.balance:.2f} {currency}"
 
 
 def get_balance_summary(user, name: str, account_type: str) -> str:
@@ -48,8 +50,12 @@ def get_balance_summary(user, name: str, account_type: str) -> str:
 
 
 def list_accounts(user) -> str:
+    currency = get_user_currency(user).upper()
     accounts = Account.objects.filter(user=user).order_by("type", "name")
     if not accounts:
         return "No accounts found."
-    lines = [f"- {account.name} ({account.type}): {account.balance:.2f} inr" for account in accounts]
+    lines = [
+        f"- {account.name} ({account.type}): {account.balance:.2f} {currency}"
+        for account in accounts
+    ]
     return "Accounts:\n" + "\n".join(lines)

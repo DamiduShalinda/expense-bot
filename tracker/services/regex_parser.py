@@ -52,7 +52,7 @@ PATTERNS = [
         "name": "expense_create_card",
         "intent": "EXPENSE_CREATE",
         "pattern": re.compile(
-            r"^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on "
+            r"^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})? on "
             r"(?P<category>[a-z][a-z ]{1,30}[a-z]) from "
             r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card"
             r"(?: last4 (?P<card_last4>\d{4}))?"
@@ -63,7 +63,7 @@ PATTERNS = [
         "name": "expense_create_account",
         "intent": "EXPENSE_CREATE",
         "pattern": re.compile(
-            r"^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on "
+            r"^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})? on "
             r"(?P<category>[a-z][a-z ]{1,30}[a-z]) from "
             r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) "
             r"(?P<source_type>account|cash)"
@@ -75,7 +75,7 @@ PATTERNS = [
         "intent": "EXPENSE_UPDATE",
         "pattern": re.compile(
             r"^update expense (?P<expense_id>\d+) amount "
-            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?"
             r"(?: category (?P<category>[a-z][a-z ]{1,30}[a-z]))?"
             r"(?: source (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) "
             r"(?P<source_type>card|account|cash)"
@@ -148,7 +148,7 @@ PATTERNS = [
         "pattern": re.compile(
             r"^(add|create|set) loan "
             r"(?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount "
-            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?"
             r"(?: description (?P<description>[a-z0-9][a-z0-9 ,\.-]{1,120}[a-z0-9]))?$"
         ),
     },
@@ -157,7 +157,7 @@ PATTERNS = [
         "intent": "LOAN_PAYMENT",
         "pattern": re.compile(
             r"^pay loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount "
-            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?"
             r"(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$"
         ),
     },
@@ -173,7 +173,7 @@ PATTERNS = [
             r"^(add|create|update|set) account "
             r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) "
             r"(?P<source_type>account|cash) balance "
-            r"(?P<balance>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?$"
+            r"(?P<balance>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?$"
         ),
     },
     {
@@ -182,7 +182,7 @@ PATTERNS = [
         "pattern": re.compile(
             r"^(add|create|update|set) card "
             r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9])(?: card)? "
-            r"limit (?P<credit_limit>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"limit (?P<credit_limit>\d+(?:\.\d{1,2})?) ?(?P<currency>[a-z]{2,5})?"
             r"(?: cycle (?P<billing_cycle_day>\d{1,2}))?"
             r"(?: last4 (?P<last4>\d{4}))?$"
         ),
@@ -195,7 +195,14 @@ PATTERNS = [
     {
         "name": "help",
         "intent": "HELP",
-        "pattern": re.compile(r"^(help|commands)$"),
+        "pattern": re.compile(r"^(help|commands)(?: (?P<help_topic>[a-z]+(?: [a-z]+)*))?$"),
+    },
+    {
+        "name": "currency_set",
+        "intent": "CURRENCY_SET",
+        "pattern": re.compile(
+            r"^(?:set|update)? ?(?:default )?currency(?: to)? (?P<currency>[a-z]{2,5})$"
+        ),
     },
 ]
 

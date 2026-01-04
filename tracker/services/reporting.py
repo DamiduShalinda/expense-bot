@@ -5,6 +5,7 @@ from django.db.models import Sum
 from django.utils import timezone
 
 from ..models import Expense
+from .currency import get_user_currency
 
 
 MONTH_MAP = {
@@ -52,7 +53,8 @@ def summarize_month(user, month_name: str, year: int | None) -> str:
         .aggregate(total=Sum("amount"))
         .get("total")
     ) or 0
-    return f"Total expenses for {month_name} {year}: {total:.2f} inr"
+    currency = get_user_currency(user).upper()
+    return f"Total expenses for {month_name} {year}: {total:.2f} {currency}"
 
 
 def summarize_relative(user, relative_period: str) -> str:
@@ -67,4 +69,5 @@ def summarize_relative(user, relative_period: str) -> str:
         .aggregate(total=Sum("amount"))
         .get("total")
     ) or 0
-    return f"Total expenses for {relative_period}: {total:.2f} inr"
+    currency = get_user_currency(user).upper()
+    return f"Total expenses for {relative_period}: {total:.2f} {currency}"

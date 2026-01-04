@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 from ..models import Card, Expense
+from .currency import get_user_currency
 from .errors import ValidationError
 
 
@@ -100,6 +101,7 @@ def get_outstanding(card: Card) -> Decimal:
 
 
 def get_credit_summary(user, issuer: str, metric: str, last4: str | None = None) -> str:
+    currency = get_user_currency(user).upper()
     cards = list(_card_queryset(user, issuer, last4))
     normalized_last4 = _normalize_last4(last4)
     if not cards:
@@ -112,13 +114,14 @@ def get_credit_summary(user, issuer: str, metric: str, last4: str | None = None)
     card_name = f"{card.issuer} {card.last4}".strip()
     available = card.credit_limit - outstanding
     if metric == "available credit":
-        return f"Available credit for {card_name}: {available:.2f} inr"
+        return f"Available credit for {card_name}: {available:.2f} {currency}"
     if metric == "due":
-        return f"Due amount for {card_name}: {outstanding:.2f} inr"
-    return f"Outstanding for {card_name}: {outstanding:.2f} inr"
+        return f"Due amount for {card_name}: {outstanding:.2f} {currency}"
+    return f"Outstanding for {card_name}: {outstanding:.2f} {currency}"
 
 
 def list_cards(user) -> str:
+    currency = get_user_currency(user).upper()
     cards = Card.objects.filter(user=user).order_by("issuer", "last4")
     if not cards:
         return "No cards found."
@@ -128,7 +131,7 @@ def list_cards(user) -> str:
         outstanding = get_outstanding(card)
         available = card.credit_limit - outstanding
         lines.append(
-            f"- {card.issuer}{suffix} | limit {card.credit_limit:.2f} inr | "
-            f"outstanding {outstanding:.2f} inr | available {available:.2f} inr"
+            f"- {card.issuer}{suffix} | limit {card.credit_limit:.2f} {currency} | "
+            f"outstanding {outstanding:.2f} {currency} | available {available:.2f} {currency}"
         )
     return "Cards:\n" + "\n".join(lines)

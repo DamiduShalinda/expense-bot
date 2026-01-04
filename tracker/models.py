@@ -6,6 +6,7 @@ class WhatsAppUser(models.Model):
     phone_number = models.CharField(max_length=32, unique=True)
     locale = models.CharField(max_length=16, default="en")
     timezone = models.CharField(max_length=64, default="UTC")
+    default_currency = models.CharField(max_length=8, default="inr")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

@@ -3,6 +3,7 @@ from decimal import Decimal
 from django.utils import timezone
 
 from ..models import Loan, LoanPayment
+from .currency import get_user_currency
 
 
 def upsert_loan(user, name: str, amount: Decimal, description: str | None = None):
@@ -59,10 +60,11 @@ def pay_loan(user, name: str, amount: Decimal, paid_at):
     loan.save(update_fields=["outstanding_amount", "status"])
 
     status = "Loan fully repaid." if loan.status == Loan.STATUS_PAID else "Partial payment recorded."
+    currency = get_user_currency(user).upper()
     return (
         loan,
-        f"Paid {payment_amount:.2f} inr towards {loan.name}. {status} Outstanding: "
-        f"{loan.outstanding_amount:.2f} inr.",
+        f"Paid {payment_amount:.2f} {currency} towards {loan.name}. {status} Outstanding: "
+        f"{loan.outstanding_amount:.2f} {currency}.",
     )
 
 
@@ -70,12 +72,13 @@ def list_loans(user) -> str:
     loans = Loan.objects.filter(user=user).order_by("status", "name")
     if not loans:
         return "No loans found."
+    currency = get_user_currency(user).upper()
     lines: list[str] = []
     for loan in loans:
         status = "paid" if loan.status == Loan.STATUS_PAID else "active"
         lines.append(
-            f"- {loan.name}: outstanding {loan.outstanding_amount:.2f} / "
-            f"{loan.principal_amount:.2f} inr ({status})"
+            f"- {loan.name}: outstanding {loan.outstanding_amount:.2f} {currency} / "
+            f"{loan.principal_amount:.2f} {currency} ({status})"
         )
         if loan.description:
             lines.append(f"  desc: {loan.description}")

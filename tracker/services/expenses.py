@@ -3,6 +3,7 @@ from django.utils import timezone
 from ..models import Category, Expense
 from .accounts import adjust_balance, get_or_create_account
 from .cards import get_or_create_card
+from .currency import get_user_currency, normalize_currency_code
 
 
 def _get_or_create_category(user, name: str | None) -> Category | None:
@@ -23,10 +24,14 @@ def create_expense(user, data: dict) -> Expense:
     elif source_type == "card":
         source_card = get_or_create_card(user, data["source"], data.get("card_last4"))
 
+    currency_code = normalize_currency_code(
+        data.get("currency") or get_user_currency(user)
+    )
+
     expense = Expense.objects.create(
         user=user,
         amount=data["amount"],
-        currency=data.get("currency") or "inr",
+        currency=currency_code,
         date=data.get("date") or timezone.localdate(),
         category=category,
         source_type=source_type,
@@ -51,7 +56,7 @@ def update_expense(user, data: dict) -> Expense | None:
     if data.get("amount") is not None:
         expense.amount = data["amount"]
     if data.get("currency"):
-        expense.currency = data["currency"]
+        expense.currency = normalize_currency_code(data["currency"])
     if data.get("date"):
         expense.date = data["date"]
     if data.get("category"):
@@ -105,6 +110,6 @@ def list_expenses(user, limit: int = 10) -> str:
         elif expense.source_type == "card" and expense.source_card:
             source = f"{expense.source_card.issuer} card"
         lines.append(
-            f"- {expense.amount:.2f} {expense.currency} on {category} from {source} on {expense.date}"
+            f"- {expense.amount:.2f} {expense.currency.upper()} on {category} from {source} on {expense.date}"
         )
     return "Recent transactions:\n" + "\n".join(lines)

@@ -130,6 +130,38 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -783,6 +815,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "tracker.migrations.0003_alter_account_type_loan_loanpayment",
+        "description": "tracker.migrations.0003_alter_account_type_loan_loanpayment",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('tracker', '0002_rename_tracker_expense_user_id_date_idx_tracker_exp_user_id_bcd9ed_idx_and_more'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='account',\n            name='type',\n            field=models.CharField(choices=[('account', 'Bank account'), ('cash', 'Cash')], max_length=16),\n        ),",
+        "detail": "tracker.migrations.0003_alter_account_type_loan_loanpayment",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "tracker.migrations.0004_whatsappuser_default_currency",
+        "description": "tracker.migrations.0004_whatsappuser_default_currency",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('tracker', '0003_alter_account_type_loan_loanpayment'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='whatsappuser',\n            name='default_currency',\n            field=models.CharField(default='inr', max_length=8),\n        ),",
+        "detail": "tracker.migrations.0004_whatsappuser_default_currency",
+        "documentation": {}
+    },
+    {
         "label": "get_or_create_account",
         "kind": 2,
         "importPath": "tracker.services.accounts",
@@ -805,7 +855,7 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def adjust_balance(account: Account, delta: Decimal):\n    account.balance += delta\n    account.save(update_fields=[\"balance\"])\ndef describe_account(account: Account) -> str:\n    return f\"{account.name} ({account.type}) balance: {account.balance:.2f} inr\"\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:",
+        "peekOfCode": "def adjust_balance(account: Account, delta: Decimal):\n    account.balance += delta\n    account.save(update_fields=[\"balance\"])\ndef describe_account(account: Account) -> str:\n    currency = get_user_currency(account.user).upper()\n    return f\"{account.name} ({account.type}) balance: {account.balance:.2f} {currency}\"\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -814,7 +864,7 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def describe_account(account: Account) -> str:\n    return f\"{account.name} ({account.type}) balance: {account.balance:.2f} inr\"\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return describe_account(account)\ndef list_accounts(user) -> str:",
+        "peekOfCode": "def describe_account(account: Account) -> str:\n    currency = get_user_currency(account.user).upper()\n    return f\"{account.name} ({account.type}) balance: {account.balance:.2f} {currency}\"\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return describe_account(account)",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -823,7 +873,7 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return describe_account(account)\ndef list_accounts(user) -> str:\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:",
+        "peekOfCode": "def get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return describe_account(account)\ndef list_accounts(user) -> str:\n    currency = get_user_currency(user).upper()\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -832,7 +882,7 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def list_accounts(user) -> str:\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:\n        return \"No accounts found.\"\n    lines = [f\"- {account.name} ({account.type}): {account.balance:.2f} inr\" for account in accounts]\n    return \"Accounts:\\n\" + \"\\n\".join(lines)",
+        "peekOfCode": "def list_accounts(user) -> str:\n    currency = get_user_currency(user).upper()\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:\n        return \"No accounts found.\"\n    lines = [\n        f\"- {account.name} ({account.type}): {account.balance:.2f} {currency}\"\n        for account in accounts\n    ]\n    return \"Accounts:\\n\" + \"\\n\".join(lines)",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -868,7 +918,7 @@
         "kind": 2,
         "importPath": "tracker.services.cards",
         "description": "tracker.services.cards",
-        "peekOfCode": "def get_credit_summary(user, issuer: str, metric: str, last4: str | None = None) -> str:\n    cards = list(_card_queryset(user, issuer, last4))\n    normalized_last4 = _normalize_last4(last4)\n    if not cards:\n        suffix = f\" ending {normalized_last4}\" if normalized_last4 else \"\"\n        return f\"No card named {issuer}{suffix} found.\"\n    if len(cards) > 1 and not normalized_last4:\n        return f\"Multiple cards found for {issuer}. Please specify last4 digits.\"\n    card = cards[0]\n    outstanding = get_outstanding(card)",
+        "peekOfCode": "def get_credit_summary(user, issuer: str, metric: str, last4: str | None = None) -> str:\n    currency = get_user_currency(user).upper()\n    cards = list(_card_queryset(user, issuer, last4))\n    normalized_last4 = _normalize_last4(last4)\n    if not cards:\n        suffix = f\" ending {normalized_last4}\" if normalized_last4 else \"\"\n        return f\"No card named {issuer}{suffix} found.\"\n    if len(cards) > 1 and not normalized_last4:\n        return f\"Multiple cards found for {issuer}. Please specify last4 digits.\"\n    card = cards[0]",
         "detail": "tracker.services.cards",
         "documentation": {}
     },
@@ -877,7 +927,7 @@
         "kind": 2,
         "importPath": "tracker.services.cards",
         "description": "tracker.services.cards",
-        "peekOfCode": "def list_cards(user) -> str:\n    cards = Card.objects.filter(user=user).order_by(\"issuer\", \"last4\")\n    if not cards:\n        return \"No cards found.\"\n    lines = []\n    for card in cards:\n        suffix = f\" {card.last4}\" if card.last4 else \"\"\n        outstanding = get_outstanding(card)\n        available = card.credit_limit - outstanding\n        lines.append(",
+        "peekOfCode": "def list_cards(user) -> str:\n    currency = get_user_currency(user).upper()\n    cards = Card.objects.filter(user=user).order_by(\"issuer\", \"last4\")\n    if not cards:\n        return \"No cards found.\"\n    lines = []\n    for card in cards:\n        suffix = f\" {card.last4}\" if card.last4 else \"\"\n        outstanding = get_outstanding(card)\n        available = card.credit_limit - outstanding",
         "detail": "tracker.services.cards",
         "documentation": {}
     },
@@ -886,8 +936,35 @@
         "kind": 2,
         "importPath": "tracker.services.categories",
         "description": "tracker.services.categories",
-        "peekOfCode": "def list_categories(user) -> str:\n    categories = (\n        Category.objects.filter(user=user)\n        .annotate(\n            total=Coalesce(\n                models.Sum(\"expense__amount\"),\n                models.Value(Decimal(\"0.00\")),\n            )\n        )\n        .order_by(\"name\")",
+        "peekOfCode": "def list_categories(user) -> str:\n    currency = get_user_currency(user).upper()\n    categories = (\n        Category.objects.filter(user=user)\n        .annotate(\n            total=Coalesce(\n                models.Sum(\"expense__amount\"),\n                models.Value(Decimal(\"0.00\")),\n            )\n        )",
         "detail": "tracker.services.categories",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_currency_code",
+        "kind": 2,
+        "importPath": "tracker.services.currency",
+        "description": "tracker.services.currency",
+        "peekOfCode": "def normalize_currency_code(code: str | None) -> str:\n    if not code:\n        return DEFAULT_CURRENCY\n    normalized = code.strip().lower()\n    return normalized or DEFAULT_CURRENCY\ndef get_user_currency(user) -> str:\n    return normalize_currency_code(getattr(user, \"default_currency\", None))",
+        "detail": "tracker.services.currency",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_currency",
+        "kind": 2,
+        "importPath": "tracker.services.currency",
+        "description": "tracker.services.currency",
+        "peekOfCode": "def get_user_currency(user) -> str:\n    return normalize_currency_code(getattr(user, \"default_currency\", None))",
+        "detail": "tracker.services.currency",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_CURRENCY",
+        "kind": 5,
+        "importPath": "tracker.services.currency",
+        "description": "tracker.services.currency",
+        "peekOfCode": "DEFAULT_CURRENCY = \"inr\"\ndef normalize_currency_code(code: str | None) -> str:\n    if not code:\n        return DEFAULT_CURRENCY\n    normalized = code.strip().lower()\n    return normalized or DEFAULT_CURRENCY\ndef get_user_currency(user) -> str:\n    return normalize_currency_code(getattr(user, \"default_currency\", None))",
+        "detail": "tracker.services.currency",
         "documentation": {}
     },
     {
@@ -913,7 +990,7 @@
         "kind": 2,
         "importPath": "tracker.services.expenses",
         "description": "tracker.services.expenses",
-        "peekOfCode": "def create_expense(user, data: dict) -> Expense:\n    category = _get_or_create_category(user, data.get(\"category\"))\n    source_type = data.get(\"source_type\")\n    source_account = None\n    source_card = None\n    if source_type in {\"account\", \"cash\"}:\n        source_account = get_or_create_account(user, data[\"source\"], source_type)\n    elif source_type == \"card\":\n        source_card = get_or_create_card(user, data[\"source\"], data.get(\"card_last4\"))\n    expense = Expense.objects.create(",
+        "peekOfCode": "def create_expense(user, data: dict) -> Expense:\n    category = _get_or_create_category(user, data.get(\"category\"))\n    source_type = data.get(\"source_type\")\n    source_account = None\n    source_card = None\n    if source_type in {\"account\", \"cash\"}:\n        source_account = get_or_create_account(user, data[\"source\"], source_type)\n    elif source_type == \"card\":\n        source_card = get_or_create_card(user, data[\"source\"], data.get(\"card_last4\"))\n    currency_code = normalize_currency_code(",
         "detail": "tracker.services.expenses",
         "documentation": {}
     },
@@ -958,7 +1035,34 @@
         "kind": 2,
         "importPath": "tracker.services.help",
         "description": "tracker.services.help",
-        "peekOfCode": "def get_help_text() -> str:\n    return \"\\n\".join(\n        [\n            \"Supported formats:\",\n            \"- spent 1200 on groceries from hdfc card\",\n            \"- spent 450 on electricity from sbi account\",\n            \"- spent 300 on snacks from wallet cash\",\n            \"- spent 900 on fuel from hdfc card last4 1234\",\n            \"- update expense 23 amount 2500 category rent source hdfc card on 2024-09-01\",\n            \"- delete expense 23\",",
+        "peekOfCode": "def get_help_text(topic: str | None = None) -> str:\n    normalized_topic = _normalize_topic(topic)\n    if not normalized_topic or normalized_topic == \"general\":\n        return _render(_GENERAL_HELP)\n    section = _TOPICAL_HELP.get(normalized_topic)\n    if section:\n        return _render(section)\n    return _render(_GENERAL_HELP)",
+        "detail": "tracker.services.help",
+        "documentation": {}
+    },
+    {
+        "label": "_GENERAL_HELP",
+        "kind": 5,
+        "importPath": "tracker.services.help",
+        "description": "tracker.services.help",
+        "peekOfCode": "_GENERAL_HELP = [\n    \"Supported commands (use 'help accounts', 'help cards', 'help transactions', 'help categories', 'help loans', 'help summary', or 'help settings' for focused help):\",\n    \"- spent 1200 on groceries from hdfc card\",\n    \"- spent 450 on electricity from sbi account\",\n    \"- spent 300 on snacks from wallet cash\",\n    \"- spent 900 on fuel from hdfc card last4 1234\",\n    \"- update expense 23 amount 2500 category rent source hdfc card on 2024-09-01\",\n    \"- delete expense 23\",\n    \"- balance of sbi account\",\n    \"- balance of hdfc card last4 1234\",",
+        "detail": "tracker.services.help",
+        "documentation": {}
+    },
+    {
+        "label": "_TOPICAL_HELP",
+        "kind": 5,
+        "importPath": "tracker.services.help",
+        "description": "tracker.services.help",
+        "peekOfCode": "_TOPICAL_HELP = {\n    \"accounts\": [\n        \"Accounts help:\",\n        \"- list accounts\",\n        \"- add account sbi account balance 12000\",\n        \"- add account wallet cash balance 500\",\n        \"- balance of sbi account\",\n        \"- balance of wallet cash\",\n        \"- update account sbi account balance 15000\",\n    ],",
+        "detail": "tracker.services.help",
+        "documentation": {}
+    },
+    {
+        "label": "_TOPIC_ALIASES",
+        "kind": 5,
+        "importPath": "tracker.services.help",
+        "description": "tracker.services.help",
+        "peekOfCode": "_TOPIC_ALIASES = {\n    \"account\": \"accounts\",\n    \"accounts\": \"accounts\",\n    \"cash\": \"accounts\",\n    \"card\": \"cards\",\n    \"cards\": \"cards\",\n    \"credit card\": \"cards\",\n    \"credit cards\": \"cards\",\n    \"transaction\": \"transactions\",\n    \"transactions\": \"transactions\",",
         "detail": "tracker.services.help",
         "documentation": {}
     },
@@ -994,7 +1098,7 @@
         "kind": 2,
         "importPath": "tracker.services.loans",
         "description": "tracker.services.loans",
-        "peekOfCode": "def list_loans(user) -> str:\n    loans = Loan.objects.filter(user=user).order_by(\"status\", \"name\")\n    if not loans:\n        return \"No loans found.\"\n    lines: list[str] = []\n    for loan in loans:\n        status = \"paid\" if loan.status == Loan.STATUS_PAID else \"active\"\n        lines.append(\n            f\"- {loan.name}: outstanding {loan.outstanding_amount:.2f} / \"\n            f\"{loan.principal_amount:.2f} inr ({status})\"",
+        "peekOfCode": "def list_loans(user) -> str:\n    loans = Loan.objects.filter(user=user).order_by(\"status\", \"name\")\n    if not loans:\n        return \"No loans found.\"\n    currency = get_user_currency(user).upper()\n    lines: list[str] = []\n    for loan in loans:\n        status = \"paid\" if loan.status == Loan.STATUS_PAID else \"active\"\n        lines.append(\n            f\"- {loan.name}: outstanding {loan.outstanding_amount:.2f} {currency} / \"",
         "detail": "tracker.services.loans",
         "documentation": {}
     },
@@ -1003,7 +1107,7 @@
         "kind": 2,
         "importPath": "tracker.services.notifications",
         "description": "tracker.services.notifications",
-        "peekOfCode": "def expense_created(expense: Expense) -> str:\n    category = expense.category.name if expense.category else \"uncategorized\"\n    message = (\n        f\"Added expense {expense.amount:.2f} {expense.currency} for {category} \"\n        f\"on {expense.date}.\"\n    )\n    if expense.source_account:\n        message += _account_status(expense)\n    elif expense.source_card:\n        message += _card_status(expense)",
+        "peekOfCode": "def expense_created(expense: Expense) -> str:\n    category = expense.category.name if expense.category else \"uncategorized\"\n    message = (\n        f\"Added expense {expense.amount:.2f} {expense.currency.upper()} for {category} \"\n        f\"on {expense.date}.\"\n    )\n    if expense.source_account:\n        message += _account_status(expense)\n    elif expense.source_card:\n        message += _card_status(expense)",
         "detail": "tracker.services.notifications",
         "documentation": {}
     },
@@ -1021,7 +1125,7 @@
         "kind": 2,
         "importPath": "tracker.services.notifications",
         "description": "tracker.services.notifications",
-        "peekOfCode": "def expense_deleted(expense_id: int, account=None) -> str:\n    message = f\"Deleted expense {expense_id}.\"\n    if account:\n        message += f\" Restored {account.name} {account.type} balance: {account.balance:.2f} inr.\"\n    return message\ndef error(message: str) -> str:\n    return message",
+        "peekOfCode": "def expense_deleted(expense_id: int, account=None) -> str:\n    message = f\"Deleted expense {expense_id}.\"\n    if account:\n        currency = get_user_currency(account.user).upper()\n        message += (\n            f\" Restored {account.name} {account.type} balance: {account.balance:.2f} {currency}.\"\n        )\n    return message\ndef error(message: str) -> str:\n    return message",
         "detail": "tracker.services.notifications",
         "documentation": {}
     },
@@ -1084,7 +1188,7 @@
         "kind": 5,
         "importPath": "tracker.services.regex_parser",
         "description": "tracker.services.regex_parser",
-        "peekOfCode": "PATTERNS = [\n    {\n        \"name\": \"expense_create_card\",\n        \"intent\": \"EXPENSE_CREATE\",\n        \"pattern\": re.compile(\n            r\"^spent (?P<amount>\\d+(?:\\.\\d{1,2})?) ?(?P<currency>inr)? on \"\n            r\"(?P<category>[a-z][a-z ]{1,30}[a-z]) from \"\n            r\"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card\"\n            r\"(?: last4 (?P<card_last4>\\d{4}))?\"\n            r\"(?: on (?P<date>\\d{4}-\\d{2}-\\d{2}|\\d{2}/\\d{2}/\\d{4}))?$\"",
+        "peekOfCode": "PATTERNS = [\n    {\n        \"name\": \"expense_create_card\",\n        \"intent\": \"EXPENSE_CREATE\",\n        \"pattern\": re.compile(\n            r\"^spent (?P<amount>\\d+(?:\\.\\d{1,2})?) ?(?P<currency>[a-z]{2,5})? on \"\n            r\"(?P<category>[a-z][a-z ]{1,30}[a-z]) from \"\n            r\"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card\"\n            r\"(?: last4 (?P<card_last4>\\d{4}))?\"\n            r\"(?: on (?P<date>\\d{4}-\\d{2}-\\d{2}|\\d{2}/\\d{2}/\\d{4}))?$\"",
         "detail": "tracker.services.regex_parser",
         "documentation": {}
     },
@@ -1152,6 +1256,15 @@
         "documentation": {}
     },
     {
+        "label": "set_default_currency",
+        "kind": 2,
+        "importPath": "tracker.services.user_settings",
+        "description": "tracker.services.user_settings",
+        "peekOfCode": "def set_default_currency(user, currency_code: str):\n    normalized = normalize_currency_code(currency_code)\n    changed = normalized != get_user_currency(user)\n    if changed:\n        user.default_currency = normalized\n        user.save(update_fields=[\"default_currency\"])\n    return normalized, changed",
+        "detail": "tracker.services.user_settings",
+        "documentation": {}
+    },
+    {
         "label": "validate_payload",
         "kind": 2,
         "importPath": "tracker.services.validation",
@@ -1201,7 +1314,7 @@
         "kind": 6,
         "importPath": "tracker.models",
         "description": "tracker.models",
-        "peekOfCode": "class WhatsAppUser(models.Model):\n    phone_number = models.CharField(max_length=32, unique=True)\n    locale = models.CharField(max_length=16, default=\"en\")\n    timezone = models.CharField(max_length=64, default=\"UTC\")\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return self.phone_number\nclass Account(models.Model):\n    TYPE_BANK = \"account\"\n    TYPE_CASH = \"cash\"",
+        "peekOfCode": "class WhatsAppUser(models.Model):\n    phone_number = models.CharField(max_length=32, unique=True)\n    locale = models.CharField(max_length=16, default=\"en\")\n    timezone = models.CharField(max_length=64, default=\"UTC\")\n    default_currency = models.CharField(max_length=8, default=\"inr\")\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return self.phone_number\nclass Account(models.Model):\n    TYPE_BANK = \"account\"",
         "detail": "tracker.models",
         "documentation": {}
     },

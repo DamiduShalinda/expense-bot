@@ -13,6 +13,8 @@ from .loans import list_loans as list_loans_summary, pay_loan, upsert_loan
 from .help import get_help_text
 from .notifications import expense_created, expense_deleted, expense_updated
 from .reporting import summarize_month, summarize_relative
+from .currency import get_user_currency
+from .user_settings import set_default_currency
 
 
 def handle_intent(user, intent: str, data: dict) -> str:
@@ -72,9 +74,10 @@ def handle_intent(user, intent: str, data: dict) -> str:
         )
         action = "Created" if created else "Updated"
         suffix = f" {card.last4}" if card.last4 else ""
+        currency = get_user_currency(user).upper()
         return (
             f"{action} {card.issuer}{suffix} card. "
-            f"Limit {card.credit_limit:.2f} inr, billing cycle day {card.billing_cycle_day}."
+            f"Limit {card.credit_limit:.2f} {currency}, billing cycle day {card.billing_cycle_day}."
         )
     if intent == "LOAN_UPSERT":
         loan, created = upsert_loan(
@@ -84,9 +87,10 @@ def handle_intent(user, intent: str, data: dict) -> str:
             description=data.get("description"),
         )
         action = "Created" if created else "Updated"
+        currency = get_user_currency(user).upper()
         return (
             f"{action} loan {loan.name}. Outstanding {loan.outstanding_amount:.2f} "
-            f"inr on principal {loan.principal_amount:.2f} inr."
+            f"{currency} on principal {loan.principal_amount:.2f} {currency}."
         )
     if intent == "LOAN_PAYMENT":
         paid_on = data.get("date") or timezone.localdate()
@@ -95,5 +99,11 @@ def handle_intent(user, intent: str, data: dict) -> str:
             return message
         return message
     if intent == "HELP":
-        return get_help_text()
+        return get_help_text(data.get("help_topic"))
+    if intent == "CURRENCY_SET":
+        new_currency, changed = set_default_currency(user, data["currency"])
+        formatted = new_currency.upper()
+        if changed:
+            return f"Default currency updated to {formatted}."
+        return f"Default currency already set to {formatted}."
     return "Unsupported request."
