@@ -57,6 +57,12 @@ Notes:
 - ACCOUNT_LIST
 - CARD_LIST
 - TRANSACTION_LIST
+- ACCOUNT_UPSERT
+- CARD_UPSERT
+- CATEGORY_LIST
+- LOAN_UPSERT
+- LOAN_PAYMENT
+- LOAN_LIST
 - HELP
 
 Each regex pattern must declare:
@@ -76,10 +82,10 @@ Each regex pattern must declare:
 Creates a new expense linked to a credit card.
 
 ### Pattern
-`^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on (?P<category>[a-z][a-z ]{1,30}[a-z]) from (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+`^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on (?P<category>[a-z][a-z ]{1,30}[a-z]) from (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card(?: last4 (?P<card_last4>\d{4}))?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
 
 ### Example
-spent 1200 on groceries from hdfc card
+spent 1200 on groceries from hdfc card last4 1234
 
 ### Named Groups
 - amount
@@ -88,6 +94,7 @@ spent 1200 on groceries from hdfc card
 - source
 - source_type (implicit = card)
 - date (optional)
+- card_last4 (optional)
 
 ---
 
@@ -124,7 +131,7 @@ spent 450 on electricity from sbi account
 Updates a specific expense by its numeric id.
 
 ### Pattern
-`^update expense (?P<expense_id>\d+) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: category (?P<category>[a-z][a-z ]{1,30}[a-z]))?(?: source (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>card|account|cash))?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+`^update expense (?P<expense_id>\d+) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: category (?P<category>[a-z][a-z ]{1,30}[a-z]))?(?: source (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>card|account|cash)(?: last4 (?P<card_last4>\d{4}))?)?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
 
 ### Example
 update expense 23 amount 2500 category rent source hdfc card on 2024-09-01
@@ -136,6 +143,7 @@ update expense 23 amount 2500 category rent source hdfc card on 2024-09-01
 - category (optional)
 - source (optional)
 - source_type (optional)
+- card_last4 (optional)
 - date (optional)
 
 ---
@@ -189,13 +197,14 @@ balance of sbi account
 Returns the current balance (spend total) for a credit card.
 
 ### Pattern
-`^balance of (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card$`
+`^balance of (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card(?: last4 (?P<card_last4>\d{4}))?$`
 
 ### Example
-balance of hdfc card
+balance of hdfc card last4 1234
 
 ### Named Groups
 - source
+- card_last4 (optional)
 
 ---
 
@@ -247,14 +256,15 @@ summary expenses this month
 Returns credit card metrics like due amount or available credit.
 
 ### Pattern
-`^(?P<metric>due|available credit|outstanding) for (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card$`
+`^(?P<metric>due|available credit|outstanding) for (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card(?: last4 (?P<card_last4>\d{4}))?$`
 
 ### Example
-available credit for hdfc card
+available credit for hdfc card last4 1234
 
 ### Named Groups
 - metric
 - source
+- card_last4 (optional)
 
 ---
 
@@ -315,7 +325,134 @@ list transactions
 
 ---
 
-## 13. Help
+## 13. Account Upsert
+
+### Intent
+`ACCOUNT_UPSERT`
+
+### Description
+Creates or updates an account (bank/cash) with a starting or updated balance.
+
+### Pattern
+`^(add|create|update|set) account (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) (?P<source_type>account|cash) balance (?P<balance>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?$`
+
+### Example
+add account sbi account balance 12000
+
+### Named Groups
+- source
+- source_type
+- balance
+- currency (optional)
+
+---
+
+## 14. Card Upsert
+
+### Intent
+`CARD_UPSERT`
+
+### Description
+Creates or updates a credit card with credit limit, billing cycle, and optional last 4 digits.
+
+### Pattern
+`^(add|create|update|set) card (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9])(?: card)? limit (?P<credit_limit>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: cycle (?P<billing_cycle_day>\d{1,2}))?(?: last4 (?P<last4>\d{4}))?$`
+
+### Example
+add card hdfc limit 50000 cycle 5 last4 1234
+
+### Named Groups
+- source
+- credit_limit
+- currency (optional)
+- billing_cycle_day (optional)
+- last4 (optional)
+
+---
+
+## 15. Category List
+
+### Intent
+`CATEGORY_LIST`
+
+### Description
+Lists all categories and their aggregated spend.
+
+### Pattern
+`^((list|show) )?categories$`
+
+### Example
+list categories
+
+### Named Groups
+- None
+
+---
+
+## 16. Loan Upsert
+
+### Intent
+`LOAN_UPSERT`
+
+### Description
+Creates or updates a loan with principal amount and optional description.
+
+### Pattern
+`^(add|create|set) loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: description (?P<description>[a-z0-9][a-z0-9 ,\.-]{1,120}[a-z0-9]))?$`
+
+### Example
+add loan home amount 500000 description home renovation
+
+### Named Groups
+- loan_name
+- amount
+- currency (optional)
+- description (optional)
+
+---
+
+## 17. Loan Payment
+
+### Intent
+`LOAN_PAYMENT`
+
+### Description
+Records a loan payment, allowing partial or full payoff.
+
+### Pattern
+`^pay loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$`
+
+### Example
+pay loan home amount 15000 on 2024-01-15
+
+### Named Groups
+- loan_name
+- amount
+- currency (optional)
+- date (optional)
+
+---
+
+## 18. Loan List
+
+### Intent
+`LOAN_LIST`
+
+### Description
+Lists all loans with outstanding and principal amounts.
+
+### Pattern
+`^((list|show) )?loans$`
+
+### Example
+list loans
+
+### Named Groups
+- None
+
+---
+
+## 19. Help
 
 ### Intent
 `HELP`

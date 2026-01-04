@@ -21,7 +21,7 @@ def create_expense(user, data: dict) -> Expense:
     if source_type in {"account", "cash"}:
         source_account = get_or_create_account(user, data["source"], source_type)
     elif source_type == "card":
-        source_card = get_or_create_card(user, data["source"])
+        source_card = get_or_create_card(user, data["source"], data.get("card_last4"))
 
     expense = Expense.objects.create(
         user=user,
@@ -35,7 +35,7 @@ def create_expense(user, data: dict) -> Expense:
     )
 
     if source_account:
-        adjust_balance(source_account, expense.amount)
+        adjust_balance(source_account, -expense.amount)
     return expense
 
 
@@ -43,6 +43,10 @@ def update_expense(user, data: dict) -> Expense | None:
     expense = Expense.objects.filter(user=user, id=data["expense_id"]).first()
     if not expense:
         return None
+
+    original_account = expense.source_account
+    original_card = expense.source_card
+    original_amount = expense.amount
 
     if data.get("amount") is not None:
         expense.amount = data["amount"]
@@ -60,23 +64,32 @@ def update_expense(user, data: dict) -> Expense | None:
             )
             expense.source_card = None
         else:
-            expense.source_card = get_or_create_card(user, data["source"])
+            expense.source_card = get_or_create_card(
+                user, data["source"], data.get("card_last4")
+            )
             expense.source_account = None
         expense.source_type = data["source_type"]
 
     expense.save()
+
+    if original_account or expense.source_account:
+        if original_account:
+            adjust_balance(original_account, original_amount)
+        if expense.source_account:
+            adjust_balance(expense.source_account, -expense.amount)
+
     return expense
 
 
-def delete_expense(user, expense_id: int) -> bool:
+def delete_expense(user, expense_id: int):
     expense = Expense.objects.filter(user=user, id=expense_id).first()
     if not expense:
-        return False
-    if expense.source_account:
-        expense.source_account.balance += expense.amount
-        expense.source_account.save(update_fields=["balance"])
+        return False, None
+    restored_account = expense.source_account
+    if restored_account:
+        adjust_balance(restored_account, expense.amount)
     expense.delete()
-    return True
+    return True, restored_account
 
 
 def list_expenses(user, limit: int = 10) -> str:

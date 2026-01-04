@@ -33,6 +33,12 @@ def _parse_amount(value: str | None) -> Decimal | None:
     return Decimal(value)
 
 
+def _parse_int(value: str | None) -> int | None:
+    if not value:
+        return None
+    return int(value)
+
+
 def _parse_date(value: str | None):
     if not value:
         return None
@@ -49,6 +55,7 @@ PATTERNS = [
             r"^spent (?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)? on "
             r"(?P<category>[a-z][a-z ]{1,30}[a-z]) from "
             r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card"
+            r"(?: last4 (?P<card_last4>\d{4}))?"
             r"(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$"
         ),
     },
@@ -71,7 +78,8 @@ PATTERNS = [
             r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
             r"(?: category (?P<category>[a-z][a-z ]{1,30}[a-z]))?"
             r"(?: source (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) "
-            r"(?P<source_type>card|account|cash))?"
+            r"(?P<source_type>card|account|cash)"
+            r"(?: last4 (?P<card_last4>\d{4}))?)?"
             r"(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$"
         ),
     },
@@ -92,7 +100,8 @@ PATTERNS = [
         "name": "balance_query_card",
         "intent": "BALANCE_QUERY",
         "pattern": re.compile(
-            r"^balance of (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card$"
+            r"^balance of (?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card"
+            r"(?: last4 (?P<card_last4>\d{4}))?$"
         ),
     },
     {
@@ -114,7 +123,8 @@ PATTERNS = [
         "intent": "CREDIT_CARD_QUERY",
         "pattern": re.compile(
             r"^(?P<metric>due|available credit|outstanding) for "
-            r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card$"
+            r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card"
+            r"(?: last4 (?P<card_last4>\d{4}))?$"
         ),
     },
     {
@@ -131,6 +141,56 @@ PATTERNS = [
         "name": "transaction_list",
         "intent": "TRANSACTION_LIST",
         "pattern": re.compile(r"^((list|show) )?(transactions|expenses)$"),
+    },
+    {
+        "name": "loan_upsert",
+        "intent": "LOAN_UPSERT",
+        "pattern": re.compile(
+            r"^(add|create|set) loan "
+            r"(?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount "
+            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"(?: description (?P<description>[a-z0-9][a-z0-9 ,\.-]{1,120}[a-z0-9]))?$"
+        ),
+    },
+    {
+        "name": "loan_payment",
+        "intent": "LOAN_PAYMENT",
+        "pattern": re.compile(
+            r"^pay loan (?P<loan_name>[a-z0-9][a-z0-9 ]{1,40}[a-z0-9]) amount "
+            r"(?P<amount>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"(?: on (?P<date>\d{4}-\d{2}-\d{2}|\d{2}/\d{2}/\d{4}))?$"
+        ),
+    },
+    {
+        "name": "loan_list",
+        "intent": "LOAN_LIST",
+        "pattern": re.compile(r"^((list|show) )?loans$"),
+    },
+    {
+        "name": "account_upsert",
+        "intent": "ACCOUNT_UPSERT",
+        "pattern": re.compile(
+            r"^(add|create|update|set) account "
+            r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) "
+            r"(?P<source_type>account|cash) balance "
+            r"(?P<balance>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?$"
+        ),
+    },
+    {
+        "name": "card_upsert",
+        "intent": "CARD_UPSERT",
+        "pattern": re.compile(
+            r"^(add|create|update|set) card "
+            r"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9])(?: card)? "
+            r"limit (?P<credit_limit>\d+(?:\.\d{1,2})?) ?(?P<currency>inr)?"
+            r"(?: cycle (?P<billing_cycle_day>\d{1,2}))?"
+            r"(?: last4 (?P<last4>\d{4}))?$"
+        ),
+    },
+    {
+        "name": "category_list",
+        "intent": "CATEGORY_LIST",
+        "pattern": re.compile(r"^((list|show) )?categories$"),
     },
     {
         "name": "help",
@@ -153,7 +213,12 @@ def parse_message(text: str) -> list[ParsedMatch]:
         if spec["name"] == "balance_query_card":
             data["source_type"] = "card"
         data["amount"] = _parse_amount(data.get("amount"))
+        data["balance"] = _parse_amount(data.get("balance"))
+        data["credit_limit"] = _parse_amount(data.get("credit_limit"))
+        data["billing_cycle_day"] = _parse_int(data.get("billing_cycle_day"))
         data["expense_id"] = int(data["expense_id"]) if data.get("expense_id") else None
         data["date"] = _parse_date(data.get("date"))
+        if data.get("card_last4"):
+            data["card_last4"] = data["card_last4"].strip()
         matches.append(ParsedMatch(intent=spec["intent"], data=data, pattern_name=spec["name"]))
     return matches

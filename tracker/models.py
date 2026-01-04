@@ -13,10 +13,10 @@ class WhatsAppUser(models.Model):
 
 
 class Account(models.Model):
-    TYPE_BANK = "bank"
+    TYPE_BANK = "account"
     TYPE_CASH = "cash"
     TYPE_CHOICES = [
-        (TYPE_BANK, "Bank"),
+        (TYPE_BANK, "Bank account"),
         (TYPE_CASH, "Cash"),
     ]
 
@@ -93,6 +93,44 @@ class Expense(models.Model):
 
     def __str__(self) -> str:
         return f"{self.amount} {self.currency} on {self.date}"
+
+
+class Loan(models.Model):
+    STATUS_ACTIVE = "active"
+    STATUS_PAID = "paid"
+    STATUS_CHOICES = [
+        (STATUS_ACTIVE, "Active"),
+        (STATUS_PAID, "Paid"),
+    ]
+
+    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=64)
+    description = models.TextField(blank=True)
+    principal_amount = models.DecimalField(max_digits=12, decimal_places=2)
+    outstanding_amount = models.DecimalField(max_digits=12, decimal_places=2)
+    status = models.CharField(max_length=16, choices=STATUS_CHOICES, default=STATUS_ACTIVE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("user", "name")
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.status})"
+
+
+class LoanPayment(models.Model):
+    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name="payments")
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    paid_at = models.DateField(default=timezone.now)
+    note = models.CharField(max_length=128, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-paid_at", "-id"]
+
+    def __str__(self) -> str:
+        return f"{self.amount} on {self.paid_at} for {self.loan.name}"
 
 
 class Message(models.Model):

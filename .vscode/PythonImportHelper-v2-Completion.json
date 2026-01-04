@@ -154,6 +154,14 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "django.db.models.deletion",
         "kind": 6,
         "isExtraImport": true,
@@ -196,6 +204,22 @@
         "documentation": {}
     },
     {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
         "label": "date",
         "importPath": "datetime",
         "description": "datetime",
@@ -281,6 +305,30 @@
         "description": "django.utils",
         "isExtraImport": true,
         "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "Coalesce",
+        "importPath": "django.db.models.functions",
+        "description": "django.db.models.functions",
+        "isExtraImport": true,
+        "detail": "django.db.models.functions",
         "documentation": {}
     },
     {
@@ -739,7 +787,16 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def get_or_create_account(user, name: str, account_type: str) -> Account:\n    account, _created = Account.objects.get_or_create(\n        user=user,\n        name=name.strip(),\n        type=account_type,\n        defaults={\"balance\": Decimal(\"0.00\")},\n    )\n    return account\ndef adjust_balance(account: Account, amount: Decimal):\n    account.balance -= amount",
+        "peekOfCode": "def get_or_create_account(user, name: str, account_type: str) -> Account:\n    account, _created = Account.objects.get_or_create(\n        user=user,\n        name=name.strip(),\n        type=account_type,\n        defaults={\"balance\": Decimal(\"0.00\")},\n    )\n    return account\ndef upsert_account(user, name: str, account_type: str, balance: Decimal | None = None):\n    account, created = Account.objects.get_or_create(",
+        "detail": "tracker.services.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "upsert_account",
+        "kind": 2,
+        "importPath": "tracker.services.accounts",
+        "description": "tracker.services.accounts",
+        "peekOfCode": "def upsert_account(user, name: str, account_type: str, balance: Decimal | None = None):\n    account, created = Account.objects.get_or_create(\n        user=user,\n        name=name.strip(),\n        type=account_type,\n        defaults={\"balance\": balance or Decimal(\"0.00\")},\n    )\n    update_fields: list[str] = []\n    if balance is not None and account.balance != balance:\n        account.balance = balance",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -748,7 +805,16 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def adjust_balance(account: Account, amount: Decimal):\n    account.balance -= amount\n    account.save(update_fields=[\"balance\"])\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return f\"Balance for {account.name} {account.type}: {account.balance:.2f} inr\"",
+        "peekOfCode": "def adjust_balance(account: Account, delta: Decimal):\n    account.balance += delta\n    account.save(update_fields=[\"balance\"])\ndef describe_account(account: Account) -> str:\n    return f\"{account.name} ({account.type}) balance: {account.balance:.2f} inr\"\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:",
+        "detail": "tracker.services.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "describe_account",
+        "kind": 2,
+        "importPath": "tracker.services.accounts",
+        "description": "tracker.services.accounts",
+        "peekOfCode": "def describe_account(account: Account) -> str:\n    return f\"{account.name} ({account.type}) balance: {account.balance:.2f} inr\"\ndef get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return describe_account(account)\ndef list_accounts(user) -> str:",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -757,7 +823,7 @@
         "kind": 2,
         "importPath": "tracker.services.accounts",
         "description": "tracker.services.accounts",
-        "peekOfCode": "def get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return f\"Balance for {account.name} {account.type}: {account.balance:.2f} inr\"\ndef list_accounts(user) -> str:\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:",
+        "peekOfCode": "def get_balance_summary(user, name: str, account_type: str) -> str:\n    account = Account.objects.filter(\n        user=user, name__iexact=name.strip(), type=account_type\n    ).first()\n    if not account:\n        return f\"No {account_type} account named {name} found.\"\n    return describe_account(account)\ndef list_accounts(user) -> str:\n    accounts = Account.objects.filter(user=user).order_by(\"type\", \"name\")\n    if not accounts:",
         "detail": "tracker.services.accounts",
         "documentation": {}
     },
@@ -775,7 +841,16 @@
         "kind": 2,
         "importPath": "tracker.services.cards",
         "description": "tracker.services.cards",
-        "peekOfCode": "def get_or_create_card(user, issuer: str) -> Card:\n    card, _created = Card.objects.get_or_create(\n        user=user,\n        issuer=issuer.strip(),\n        defaults={\"credit_limit\": Decimal(\"0.00\")},\n    )\n    return card\ndef _statement_window(billing_cycle_day: int, today: date | None = None):\n    if today is None:\n        today = timezone.localdate()",
+        "peekOfCode": "def get_or_create_card(user, issuer: str, last4: str | None = None) -> Card:\n    qs = _card_queryset(user, issuer, last4)\n    cards = list(qs)\n    if cards:\n        if len(cards) > 1 and not _normalize_last4(last4):\n            raise ValidationError(f\"Multiple cards found for {issuer}. Please include last4 digits.\")\n        return cards[0]\n    normalized_last4 = _normalize_last4(last4)\n    card = Card.objects.create(\n        user=user,",
+        "detail": "tracker.services.cards",
+        "documentation": {}
+    },
+    {
+        "label": "upsert_card",
+        "kind": 2,
+        "importPath": "tracker.services.cards",
+        "description": "tracker.services.cards",
+        "peekOfCode": "def upsert_card(\n    user,\n    issuer: str,\n    credit_limit: Decimal | None = None,\n    billing_cycle_day: int | None = None,\n    last4: str | None = None,\n):\n    formatted_last4 = _normalize_last4(last4)\n    card, created = Card.objects.get_or_create(\n        user=user,",
         "detail": "tracker.services.cards",
         "documentation": {}
     },
@@ -793,7 +868,7 @@
         "kind": 2,
         "importPath": "tracker.services.cards",
         "description": "tracker.services.cards",
-        "peekOfCode": "def get_credit_summary(user, issuer: str, metric: str) -> str:\n    card = Card.objects.filter(user=user, issuer__iexact=issuer.strip()).first()\n    if not card:\n        return f\"No card named {issuer} found.\"\n    outstanding = get_outstanding(card)\n    available = card.credit_limit - outstanding\n    if metric == \"available credit\":\n        return f\"Available credit for {card.issuer}: {available:.2f} inr\"\n    if metric == \"due\":\n        return f\"Due amount for {card.issuer}: {outstanding:.2f} inr\"",
+        "peekOfCode": "def get_credit_summary(user, issuer: str, metric: str, last4: str | None = None) -> str:\n    cards = list(_card_queryset(user, issuer, last4))\n    normalized_last4 = _normalize_last4(last4)\n    if not cards:\n        suffix = f\" ending {normalized_last4}\" if normalized_last4 else \"\"\n        return f\"No card named {issuer}{suffix} found.\"\n    if len(cards) > 1 and not normalized_last4:\n        return f\"Multiple cards found for {issuer}. Please specify last4 digits.\"\n    card = cards[0]\n    outstanding = get_outstanding(card)",
         "detail": "tracker.services.cards",
         "documentation": {}
     },
@@ -802,8 +877,17 @@
         "kind": 2,
         "importPath": "tracker.services.cards",
         "description": "tracker.services.cards",
-        "peekOfCode": "def list_cards(user) -> str:\n    cards = Card.objects.filter(user=user).order_by(\"issuer\", \"last4\")\n    if not cards:\n        return \"No cards found.\"\n    lines = []\n    for card in cards:\n        suffix = f\" {card.last4}\" if card.last4 else \"\"\n        lines.append(f\"- {card.issuer}{suffix}\")\n    return \"Cards:\\n\" + \"\\n\".join(lines)",
+        "peekOfCode": "def list_cards(user) -> str:\n    cards = Card.objects.filter(user=user).order_by(\"issuer\", \"last4\")\n    if not cards:\n        return \"No cards found.\"\n    lines = []\n    for card in cards:\n        suffix = f\" {card.last4}\" if card.last4 else \"\"\n        outstanding = get_outstanding(card)\n        available = card.credit_limit - outstanding\n        lines.append(",
         "detail": "tracker.services.cards",
+        "documentation": {}
+    },
+    {
+        "label": "list_categories",
+        "kind": 2,
+        "importPath": "tracker.services.categories",
+        "description": "tracker.services.categories",
+        "peekOfCode": "def list_categories(user) -> str:\n    categories = (\n        Category.objects.filter(user=user)\n        .annotate(\n            total=Coalesce(\n                models.Sum(\"expense__amount\"),\n                models.Value(Decimal(\"0.00\")),\n            )\n        )\n        .order_by(\"name\")",
+        "detail": "tracker.services.categories",
         "documentation": {}
     },
     {
@@ -829,7 +913,7 @@
         "kind": 2,
         "importPath": "tracker.services.expenses",
         "description": "tracker.services.expenses",
-        "peekOfCode": "def create_expense(user, data: dict) -> Expense:\n    category = _get_or_create_category(user, data.get(\"category\"))\n    source_type = data.get(\"source_type\")\n    source_account = None\n    source_card = None\n    if source_type in {\"account\", \"cash\"}:\n        source_account = get_or_create_account(user, data[\"source\"], source_type)\n    elif source_type == \"card\":\n        source_card = get_or_create_card(user, data[\"source\"])\n    expense = Expense.objects.create(",
+        "peekOfCode": "def create_expense(user, data: dict) -> Expense:\n    category = _get_or_create_category(user, data.get(\"category\"))\n    source_type = data.get(\"source_type\")\n    source_account = None\n    source_card = None\n    if source_type in {\"account\", \"cash\"}:\n        source_account = get_or_create_account(user, data[\"source\"], source_type)\n    elif source_type == \"card\":\n        source_card = get_or_create_card(user, data[\"source\"], data.get(\"card_last4\"))\n    expense = Expense.objects.create(",
         "detail": "tracker.services.expenses",
         "documentation": {}
     },
@@ -838,7 +922,7 @@
         "kind": 2,
         "importPath": "tracker.services.expenses",
         "description": "tracker.services.expenses",
-        "peekOfCode": "def update_expense(user, data: dict) -> Expense | None:\n    expense = Expense.objects.filter(user=user, id=data[\"expense_id\"]).first()\n    if not expense:\n        return None\n    if data.get(\"amount\") is not None:\n        expense.amount = data[\"amount\"]\n    if data.get(\"currency\"):\n        expense.currency = data[\"currency\"]\n    if data.get(\"date\"):\n        expense.date = data[\"date\"]",
+        "peekOfCode": "def update_expense(user, data: dict) -> Expense | None:\n    expense = Expense.objects.filter(user=user, id=data[\"expense_id\"]).first()\n    if not expense:\n        return None\n    original_account = expense.source_account\n    original_card = expense.source_card\n    original_amount = expense.amount\n    if data.get(\"amount\") is not None:\n        expense.amount = data[\"amount\"]\n    if data.get(\"currency\"):",
         "detail": "tracker.services.expenses",
         "documentation": {}
     },
@@ -847,7 +931,7 @@
         "kind": 2,
         "importPath": "tracker.services.expenses",
         "description": "tracker.services.expenses",
-        "peekOfCode": "def delete_expense(user, expense_id: int) -> bool:\n    expense = Expense.objects.filter(user=user, id=expense_id).first()\n    if not expense:\n        return False\n    if expense.source_account:\n        expense.source_account.balance += expense.amount\n        expense.source_account.save(update_fields=[\"balance\"])\n    expense.delete()\n    return True\ndef list_expenses(user, limit: int = 10) -> str:",
+        "peekOfCode": "def delete_expense(user, expense_id: int):\n    expense = Expense.objects.filter(user=user, id=expense_id).first()\n    if not expense:\n        return False, None\n    restored_account = expense.source_account\n    if restored_account:\n        adjust_balance(restored_account, expense.amount)\n    expense.delete()\n    return True, restored_account\ndef list_expenses(user, limit: int = 10) -> str:",
         "detail": "tracker.services.expenses",
         "documentation": {}
     },
@@ -874,7 +958,7 @@
         "kind": 2,
         "importPath": "tracker.services.help",
         "description": "tracker.services.help",
-        "peekOfCode": "def get_help_text() -> str:\n    return \"\\n\".join(\n        [\n            \"Supported formats:\",\n            \"- spent 1200 on groceries from hdfc card\",\n            \"- spent 450 on electricity from sbi account\",\n            \"- spent 300 on snacks from wallet cash\",\n            \"- update expense 23 amount 2500 category rent source hdfc card on 2024-09-01\",\n            \"- delete expense 23\",\n            \"- balance of sbi account\",",
+        "peekOfCode": "def get_help_text() -> str:\n    return \"\\n\".join(\n        [\n            \"Supported formats:\",\n            \"- spent 1200 on groceries from hdfc card\",\n            \"- spent 450 on electricity from sbi account\",\n            \"- spent 300 on snacks from wallet cash\",\n            \"- spent 900 on fuel from hdfc card last4 1234\",\n            \"- update expense 23 amount 2500 category rent source hdfc card on 2024-09-01\",\n            \"- delete expense 23\",",
         "detail": "tracker.services.help",
         "documentation": {}
     },
@@ -888,11 +972,38 @@
         "documentation": {}
     },
     {
+        "label": "upsert_loan",
+        "kind": 2,
+        "importPath": "tracker.services.loans",
+        "description": "tracker.services.loans",
+        "peekOfCode": "def upsert_loan(user, name: str, amount: Decimal, description: str | None = None):\n    loan_name = name.strip()\n    description_text = (description or \"\").strip()\n    loan, created = Loan.objects.get_or_create(\n        user=user,\n        name=loan_name,\n        defaults={\n            \"description\": description_text,\n            \"principal_amount\": amount,\n            \"outstanding_amount\": amount,",
+        "detail": "tracker.services.loans",
+        "documentation": {}
+    },
+    {
+        "label": "pay_loan",
+        "kind": 2,
+        "importPath": "tracker.services.loans",
+        "description": "tracker.services.loans",
+        "peekOfCode": "def pay_loan(user, name: str, amount: Decimal, paid_at):\n    loan = Loan.objects.filter(user=user, name__iexact=name.strip()).first()\n    if not loan:\n        return None, f\"No loan named {name} found.\"\n    if loan.outstanding_amount <= 0:\n        return loan, f\"Loan {loan.name} is already fully paid.\"\n    payment_amount = min(amount, loan.outstanding_amount)\n    payment = LoanPayment.objects.create(\n        loan=loan,\n        amount=payment_amount,",
+        "detail": "tracker.services.loans",
+        "documentation": {}
+    },
+    {
+        "label": "list_loans",
+        "kind": 2,
+        "importPath": "tracker.services.loans",
+        "description": "tracker.services.loans",
+        "peekOfCode": "def list_loans(user) -> str:\n    loans = Loan.objects.filter(user=user).order_by(\"status\", \"name\")\n    if not loans:\n        return \"No loans found.\"\n    lines: list[str] = []\n    for loan in loans:\n        status = \"paid\" if loan.status == Loan.STATUS_PAID else \"active\"\n        lines.append(\n            f\"- {loan.name}: outstanding {loan.outstanding_amount:.2f} / \"\n            f\"{loan.principal_amount:.2f} inr ({status})\"",
+        "detail": "tracker.services.loans",
+        "documentation": {}
+    },
+    {
         "label": "expense_created",
         "kind": 2,
         "importPath": "tracker.services.notifications",
         "description": "tracker.services.notifications",
-        "peekOfCode": "def expense_created(expense: Expense) -> str:\n    category = expense.category.name if expense.category else \"uncategorized\"\n    return (\n        f\"Added expense {expense.amount:.2f} {expense.currency} for {category} \"\n        f\"on {expense.date}.\"\n    )\ndef expense_updated(expense: Expense) -> str:\n    return f\"Updated expense {expense.id}.\"\ndef expense_deleted(expense_id: int) -> str:\n    return f\"Deleted expense {expense_id}.\"",
+        "peekOfCode": "def expense_created(expense: Expense) -> str:\n    category = expense.category.name if expense.category else \"uncategorized\"\n    message = (\n        f\"Added expense {expense.amount:.2f} {expense.currency} for {category} \"\n        f\"on {expense.date}.\"\n    )\n    if expense.source_account:\n        message += _account_status(expense)\n    elif expense.source_card:\n        message += _card_status(expense)",
         "detail": "tracker.services.notifications",
         "documentation": {}
     },
@@ -901,7 +1012,7 @@
         "kind": 2,
         "importPath": "tracker.services.notifications",
         "description": "tracker.services.notifications",
-        "peekOfCode": "def expense_updated(expense: Expense) -> str:\n    return f\"Updated expense {expense.id}.\"\ndef expense_deleted(expense_id: int) -> str:\n    return f\"Deleted expense {expense_id}.\"\ndef error(message: str) -> str:\n    return message",
+        "peekOfCode": "def expense_updated(expense: Expense) -> str:\n    message = f\"Updated expense {expense.id}.\"\n    if expense.source_account:\n        message += _account_status(expense)\n    elif expense.source_card:\n        message += _card_status(expense)\n    return message\ndef expense_deleted(expense_id: int, account=None) -> str:\n    message = f\"Deleted expense {expense_id}.\"\n    if account:",
         "detail": "tracker.services.notifications",
         "documentation": {}
     },
@@ -910,7 +1021,7 @@
         "kind": 2,
         "importPath": "tracker.services.notifications",
         "description": "tracker.services.notifications",
-        "peekOfCode": "def expense_deleted(expense_id: int) -> str:\n    return f\"Deleted expense {expense_id}.\"\ndef error(message: str) -> str:\n    return message",
+        "peekOfCode": "def expense_deleted(expense_id: int, account=None) -> str:\n    message = f\"Deleted expense {expense_id}.\"\n    if account:\n        message += f\" Restored {account.name} {account.type} balance: {account.balance:.2f} inr.\"\n    return message\ndef error(message: str) -> str:\n    return message",
         "detail": "tracker.services.notifications",
         "documentation": {}
     },
@@ -973,7 +1084,7 @@
         "kind": 5,
         "importPath": "tracker.services.regex_parser",
         "description": "tracker.services.regex_parser",
-        "peekOfCode": "PATTERNS = [\n    {\n        \"name\": \"expense_create_card\",\n        \"intent\": \"EXPENSE_CREATE\",\n        \"pattern\": re.compile(\n            r\"^spent (?P<amount>\\d+(?:\\.\\d{1,2})?) ?(?P<currency>inr)? on \"\n            r\"(?P<category>[a-z][a-z ]{1,30}[a-z]) from \"\n            r\"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card\"\n            r\"(?: on (?P<date>\\d{4}-\\d{2}-\\d{2}|\\d{2}/\\d{2}/\\d{4}))?$\"\n        ),",
+        "peekOfCode": "PATTERNS = [\n    {\n        \"name\": \"expense_create_card\",\n        \"intent\": \"EXPENSE_CREATE\",\n        \"pattern\": re.compile(\n            r\"^spent (?P<amount>\\d+(?:\\.\\d{1,2})?) ?(?P<currency>inr)? on \"\n            r\"(?P<category>[a-z][a-z ]{1,30}[a-z]) from \"\n            r\"(?P<source>[a-z0-9][a-z0-9 ]{1,30}[a-z0-9]) card\"\n            r\"(?: last4 (?P<card_last4>\\d{4}))?\"\n            r\"(?: on (?P<date>\\d{4}-\\d{2}-\\d{2}|\\d{2}/\\d{2}/\\d{4}))?$\"",
         "detail": "tracker.services.regex_parser",
         "documentation": {}
     },
@@ -1090,7 +1201,7 @@
         "kind": 6,
         "importPath": "tracker.models",
         "description": "tracker.models",
-        "peekOfCode": "class WhatsAppUser(models.Model):\n    phone_number = models.CharField(max_length=32, unique=True)\n    locale = models.CharField(max_length=16, default=\"en\")\n    timezone = models.CharField(max_length=64, default=\"UTC\")\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return self.phone_number\nclass Account(models.Model):\n    TYPE_BANK = \"bank\"\n    TYPE_CASH = \"cash\"",
+        "peekOfCode": "class WhatsAppUser(models.Model):\n    phone_number = models.CharField(max_length=32, unique=True)\n    locale = models.CharField(max_length=16, default=\"en\")\n    timezone = models.CharField(max_length=64, default=\"UTC\")\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return self.phone_number\nclass Account(models.Model):\n    TYPE_BANK = \"account\"\n    TYPE_CASH = \"cash\"",
         "detail": "tracker.models",
         "documentation": {}
     },
@@ -1099,7 +1210,7 @@
         "kind": 6,
         "importPath": "tracker.models",
         "description": "tracker.models",
-        "peekOfCode": "class Account(models.Model):\n    TYPE_BANK = \"bank\"\n    TYPE_CASH = \"cash\"\n    TYPE_CHOICES = [\n        (TYPE_BANK, \"Bank\"),\n        (TYPE_CASH, \"Cash\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)\n    name = models.CharField(max_length=64)\n    type = models.CharField(max_length=16, choices=TYPE_CHOICES)",
+        "peekOfCode": "class Account(models.Model):\n    TYPE_BANK = \"account\"\n    TYPE_CASH = \"cash\"\n    TYPE_CHOICES = [\n        (TYPE_BANK, \"Bank account\"),\n        (TYPE_CASH, \"Cash\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)\n    name = models.CharField(max_length=64)\n    type = models.CharField(max_length=16, choices=TYPE_CHOICES)",
         "detail": "tracker.models",
         "documentation": {}
     },
@@ -1127,6 +1238,24 @@
         "importPath": "tracker.models",
         "description": "tracker.models",
         "peekOfCode": "class Expense(models.Model):\n    SOURCE_CARD = \"card\"\n    SOURCE_ACCOUNT = \"account\"\n    SOURCE_CASH = \"cash\"\n    SOURCE_CHOICES = [\n        (SOURCE_CARD, \"Card\"),\n        (SOURCE_ACCOUNT, \"Account\"),\n        (SOURCE_CASH, \"Cash\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "Loan",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class Loan(models.Model):\n    STATUS_ACTIVE = \"active\"\n    STATUS_PAID = \"paid\"\n    STATUS_CHOICES = [\n        (STATUS_ACTIVE, \"Active\"),\n        (STATUS_PAID, \"Paid\"),\n    ]\n    user = models.ForeignKey(WhatsAppUser, on_delete=models.CASCADE)\n    name = models.CharField(max_length=64)\n    description = models.TextField(blank=True)",
+        "detail": "tracker.models",
+        "documentation": {}
+    },
+    {
+        "label": "LoanPayment",
+        "kind": 6,
+        "importPath": "tracker.models",
+        "description": "tracker.models",
+        "peekOfCode": "class LoanPayment(models.Model):\n    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name=\"payments\")\n    amount = models.DecimalField(max_digits=12, decimal_places=2)\n    paid_at = models.DateField(default=timezone.now)\n    note = models.CharField(max_length=128, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        ordering = [\"-paid_at\", \"-id\"]\n    def __str__(self) -> str:\n        return f\"{self.amount} on {self.paid_at} for {self.loan.name}\"",
         "detail": "tracker.models",
         "documentation": {}
     },

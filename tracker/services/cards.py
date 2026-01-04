@@ -5,15 +5,68 @@ from django.db import models
 from django.utils import timezone
 
 from ..models import Card, Expense
+from .errors import ValidationError
 
 
-def get_or_create_card(user, issuer: str) -> Card:
-    card, _created = Card.objects.get_or_create(
+def _normalize_last4(last4: str | None) -> str:
+    return (last4 or "").strip()
+
+
+def _card_queryset(user, issuer: str, last4: str | None = None):
+    qs = Card.objects.filter(user=user, issuer__iexact=issuer.strip())
+    normalized_last4 = _normalize_last4(last4)
+    if normalized_last4:
+        qs = qs.filter(last4__iexact=normalized_last4)
+    return qs
+
+
+def get_or_create_card(user, issuer: str, last4: str | None = None) -> Card:
+    qs = _card_queryset(user, issuer, last4)
+    cards = list(qs)
+    if cards:
+        if len(cards) > 1 and not _normalize_last4(last4):
+            raise ValidationError(f"Multiple cards found for {issuer}. Please include last4 digits.")
+        return cards[0]
+    normalized_last4 = _normalize_last4(last4)
+    card = Card.objects.create(
         user=user,
         issuer=issuer.strip(),
-        defaults={"credit_limit": Decimal("0.00")},
+        last4=normalized_last4,
+        credit_limit=Decimal("0.00"),
     )
     return card
+
+
+def upsert_card(
+    user,
+    issuer: str,
+    credit_limit: Decimal | None = None,
+    billing_cycle_day: int | None = None,
+    last4: str | None = None,
+):
+    formatted_last4 = _normalize_last4(last4)
+    card, created = Card.objects.get_or_create(
+        user=user,
+        issuer=issuer.strip(),
+        last4=formatted_last4,
+        defaults={
+            "billing_cycle_day": billing_cycle_day or 1,
+            "credit_limit": credit_limit or Decimal("0.00"),
+        },
+    )
+    update_fields: list[str] = []
+    if credit_limit is not None and card.credit_limit != credit_limit:
+        card.credit_limit = credit_limit
+        update_fields.append("credit_limit")
+    if billing_cycle_day is not None and card.billing_cycle_day != billing_cycle_day:
+        card.billing_cycle_day = billing_cycle_day
+        update_fields.append("billing_cycle_day")
+    if formatted_last4 and card.last4 != formatted_last4:
+        card.last4 = formatted_last4
+        update_fields.append("last4")
+    if update_fields:
+        card.save(update_fields=update_fields)
+    return card, created
 
 
 def _statement_window(billing_cycle_day: int, today: date | None = None):
@@ -46,17 +99,23 @@ def get_outstanding(card: Card) -> Decimal:
     return total or Decimal("0.00")
 
 
-def get_credit_summary(user, issuer: str, metric: str) -> str:
-    card = Card.objects.filter(user=user, issuer__iexact=issuer.strip()).first()
-    if not card:
-        return f"No card named {issuer} found."
+def get_credit_summary(user, issuer: str, metric: str, last4: str | None = None) -> str:
+    cards = list(_card_queryset(user, issuer, last4))
+    normalized_last4 = _normalize_last4(last4)
+    if not cards:
+        suffix = f" ending {normalized_last4}" if normalized_last4 else ""
+        return f"No card named {issuer}{suffix} found."
+    if len(cards) > 1 and not normalized_last4:
+        return f"Multiple cards found for {issuer}. Please specify last4 digits."
+    card = cards[0]
     outstanding = get_outstanding(card)
+    card_name = f"{card.issuer} {card.last4}".strip()
     available = card.credit_limit - outstanding
     if metric == "available credit":
-        return f"Available credit for {card.issuer}: {available:.2f} inr"
+        return f"Available credit for {card_name}: {available:.2f} inr"
     if metric == "due":
-        return f"Due amount for {card.issuer}: {outstanding:.2f} inr"
-    return f"Outstanding for {card.issuer}: {outstanding:.2f} inr"
+        return f"Due amount for {card_name}: {outstanding:.2f} inr"
+    return f"Outstanding for {card_name}: {outstanding:.2f} inr"
 
 
 def list_cards(user) -> str:
@@ -66,5 +125,10 @@ def list_cards(user) -> str:
     lines = []
     for card in cards:
         suffix = f" {card.last4}" if card.last4 else ""
-        lines.append(f"- {card.issuer}{suffix}")
+        outstanding = get_outstanding(card)
+        available = card.credit_limit - outstanding
+        lines.append(
+            f"- {card.issuer}{suffix} | limit {card.credit_limit:.2f} inr | "
+            f"outstanding {outstanding:.2f} inr | available {available:.2f} inr"
+        )
     return "Cards:\n" + "\n".join(lines)
